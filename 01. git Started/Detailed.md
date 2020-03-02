@@ -105,7 +105,5 @@ git push
 
 ## *More Reading*
 
-- [PowerShell Overview](https://docs.microsoft.com/en-us/powershell/scripting/overview)
-- [Cascadia Code Font](https://github.com/microsoft/cascadia-code)
 - [git-scm](https://git-scm.com/docs/gittutorial)
 - [.gitignore](https://git-scm.com/docs/gitignore)
