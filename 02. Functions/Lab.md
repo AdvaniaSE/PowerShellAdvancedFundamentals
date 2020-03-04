@@ -2,38 +2,48 @@
 
 ## Create any or all of the filters below
 
-1. A filter that selects and outputs numbers less than 10 from input
+1. A filter called `Select-LessThanTen` that selects and outputs numbers less than 10 from input.
 
-2. A filter that selects and outputs even numbers from input
+2. A filter called `Select-EvenNumber` that selects and outputs even numbers from input.
 
-3. A filter of your own choice that uses the input in pipeline
+3. A filter of your own choice that uses the input in pipeline.
 
 ---
 
 ## Create any or all of the functions below
 
-1. A function that adds five to a number parameter from input
+1. `New-FileInDirectory` - A function that creates a file in a directory with the file name as the parameter `Name`.
 
-2. A function that converts and outputs a string parameter from input to uppercase
+2. `Add-FiveToNumber` - A function that adds five to the parameter `Number` and outputs the result.
 
-3. A function of your own choice that uses at least one parameter
+3. A function of your own choice that uses at least one parameter.
 
 ---
 
-## Create any or all of the advanced functions below
+## Add advanced functionality to any or all of the functions
 
-1. An advanced function that creates a file in a specified directory
-  
-- Add a string parameter for path with validation that the directory exists
-- Add a string parameter for file name with validation that it is at least 5 characters
-- *Optional:* Add a string parameter for the text content of the file that is to be created
+1. `New-FileInDirectory`
 
-2. An advanced function that lists every number between the input and 1000
+Add parameters and validation to the function.
 
-- Add a int parameter with validation that it is less than 1000
+- Add a `string` parameter `Path` that decides the location of the new file, with validation that the directory exists.
+- Add validation to the `Name` parameter to ensure that the file name is a `string` of at least 5 characters.
+- *Optional:* Add the `string` parameter `Content` for the text that the new file should contain.
 
-3. An advanced function that lists every day between now and a date in the future
+2. `Add-FiveToNumber`
 
-- Add a datetime parameter with validation that the date is at least one day in the future
+Add validation and help data.
 
-4. An advanced function of your choice that uses at least two parameters with validation
+- Add validation to the parameter `Number` to ensure it is a positive number less than 1000.
+
+- Add a description as comment-based help to the function.
+
+- Add OutputType `int` to the function.
+
+3. `Get-EachDayUntilDate`
+
+Write an advanced function that lists every day between now and a date in the future.
+
+- Add a `datetime` parameter  called `Date` with validation that the date is at least one day in the future.
+
+4. An advanced function of your choice that uses at least two parameters with validation.
