@@ -3,7 +3,33 @@
 ## Enum - Months
 
 - Create an enum called `Month` with the name of each month as the values
-  - Run `[Month]3` in PowerShell, what do you get as output? Why?
+
+```PowerShell
+enum Month {
+    January
+    February
+    March
+    April
+    May
+    June
+    July
+    August
+    September
+    October
+    November
+    December
+}
+```
+
+- Run the following in PowerShell, what do you get as output?
+
+```PowerShell
+[Month]2
+
+# The output will be March
+```
+
+*Tip:* An enum is a defined, restricted set of values that are mapped to numbers. Using enums for program states or values normally represented by numbers in code can make them more human readable.
 
 ---
 
