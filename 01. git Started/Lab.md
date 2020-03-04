@@ -14,4 +14,4 @@
 - Add the text file with your name to the folder "Lab 01"
 - Commit the changes to the repository
 - Push the changes to the fork on GitHub
-- Create a Pull Request to the course solution repository on GitHub
+- Create a pull request to the course solution repository on GitHub
