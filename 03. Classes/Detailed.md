@@ -100,6 +100,8 @@ class Game {
 }
 ```
 
+*Tip:* Use the keyword `using` to import classes from a module, importing a module with a class in normally will not import the class type.
+
 ---
 
 ## *More Reading*
