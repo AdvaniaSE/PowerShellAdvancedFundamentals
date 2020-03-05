@@ -78,7 +78,7 @@ class Game {
         $this.State = [GameState]::InProgress
     }
 
-    # Method that lets the user Guess the generated target number
+    # Method that lets the user guess the generated target number
     [string] Guess([int]$Guess) {
         $this.GuessCount++
         $GuessResult = ''
