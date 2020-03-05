@@ -7,7 +7,7 @@
 - Change the `$ErrorView` variable and note the difference between messages. Valid values for ErrorView are
   - NormalView
   - CategoryView
-  - ConciseView #(This is the default view)
+  - ConciseView (This is the default view)
 
 ---
 
@@ -15,7 +15,7 @@
 
 ---
 
-- Create a try/catch block to capture the error and instead of an error, return the string `I captured the error: <ErrorMessage>`
+- Create a try/catch block to capture the error and instead of an error, return the string "I captured the error: \<ErrorMessage\>"
 
 ---
 
@@ -27,7 +27,7 @@
 
 ---
 
-- Add a finally block outputting the string `Finally in the finally block.` and verify that this block is run no matter how the code flows.
+- Add a finally block outputting the string "Finally in the finally block." and verify that this block is run no matter how the code flows.
 
 ---
 

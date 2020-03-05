@@ -2,9 +2,9 @@
 
 ---
 
-*Note:* Depending on how you generate and observe the errors in this lab, the sollution will look different. Please explore and try more than one way of solving this.
+*Note:* Depending on how you generate and observe the errors in this lab, the solution will look different. Please explore and try more than one way of solving this.
 
-Some commands does not by default generate breaking errors, So we force them to do so with the `-ErrorAction Stop` Parameter.
+Some commands do not by default generate breaking errors, so we force them to do so with the `-ErrorAction Stop` parameter.
 
 ---
 
@@ -19,7 +19,7 @@ Get-Error $ThisVariableDoesNotExist
 - Change the `$ErrorView` variable and note the difference between messages. Valid values for ErrorView are
   - NormalView
   - CategoryView
-  - ConciseView #(This is the default view)
+  - ConciseView (This is the default view)
 
 ```PowerShell
 $ErrorView = 'CategoryView'
@@ -37,14 +37,15 @@ Get-Error $Error[0]
 
 ---
 
-- Create a try/catch block to capture the error and instead of an error, return the string `I captured the error: <ErrorMessage>`
+- Create a try/catch block to capture the error and instead of an error, return the string "I captured the error: \<ErrorMessage\>"
 
 The error generated here will still be in the `$Error` variable, and you can still explore it using `Get-Error`, But because we caught it we can instead handle it gracefully.
 
 ```PowerShell
 try {
     Get-Error $ThisVariableDoesNotExist
-} catch {
+}
+catch {
     Write-Output "I captured the error: $($_.Exception.Message)"
 }
 ```
@@ -55,12 +56,13 @@ try {
 
 The output from `Get-Error` contains everything PowerShell knows about the thrown error. One of the lines in the output is `Type`, which we can use to catch specific errors.
 
-An error object can contain several type of errors, as errors are nested in a so-called stacktrace from the original point of failure.
+An error object can contain several type of errors, as errors are nested in a so-called stack trace from the original point of failure.
 
 ```PowerShell
 try {
     Get-Error $ThisVariableDoesNotExist -ErrorAction Stop
-} catch [System.Management.Automation.ValidationMetadataException] {
+}
+catch [System.Management.Automation.ValidationMetadataException] {
     Write-Output 'I captured the named error.'
 }
 ```
@@ -72,48 +74,59 @@ try {
 ```PowerShell
 try {
     Get-Item C:\ThisPathDoesNotExist\ -ErrorAction Stop
-} catch [System.Management.Automation.ValidationMetadataException] {
+}
+catch [System.Management.Automation.ValidationMetadataException] {
     Write-Output "I captured the metadata error."
-} catch {
+}
+catch {
     Write-Output 'This is an unhandled exception'
 }
 ```
 
 ---
 
-- Add a finally block outputting the string `Finally in the finally block.` and verify that this block is run no matter how the code flows.
+- Add a finally block outputting the string "Finally in the finally block." and verify that this block is run no matter how the code flows.
 
 ```PowerShell
 # First, lets try the last command we run
 try {
     Get-Item C:\ThisPathDoesNotExist\ -ErrorAction Stop
-} catch [System.Management.Automation.ValidationMetadataException] {
+}
+catch [System.Management.Automation.ValidationMetadataException] {
     Write-Output "I captured the metadata error."
-} catch {
+}
+catch {
     Write-Output 'This is an unhandled exception'
-} finally {
+}
+finally {
     Write-Output 'Finally in the finally block.'
 }
 
 # Second, Lets try the named exception
 try {
     Get-Error $ThisVariableDoesNotExist -ErrorAction Stop
-} catch [System.Management.Automation.ValidationMetadataException] {
+}
+catch [System.Management.Automation.ValidationMetadataException] {
     Write-Output "I captured the metadata error."
-} catch {
+}
+catch {
     Write-Output 'This is an unhandled exception'
-} finally {
+}
+finally {
     Write-Output 'Finally in the finally block.'
 }
 
 # Last, lets try a working command
 try {
     Get-Process pwsh
-} catch [System.Management.Automation.ValidationMetadataException] {
+}
+catch [System.Management.Automation.ValidationMetadataException] {
     Write-Output "I captured the metadata error."
-} catch {
+}
+catch {
     Write-Output 'This is an unhandled exception'
-} finally {
+}
+finally {
     Write-Output 'Finally in the finally block.'
 }
 
@@ -133,26 +146,29 @@ try {
 To rerun the same script we can start by creating a function that will break.
 
 ```PowerShell
-Function Get-ItemThatDoesntExist { 
+Function Get-ItemThatDoesntExist {
     try {
         Get-Item C:\ThisPathDoesNotExist\
-    } catch {
+    }
+    catch {
         Write-Output 'We caught the exception'
     }
 }
 ```
 
-Now we can run the function in powershell, change the `$ErrorActionPreference`, and try again.
+Now we can run the function in PowerShell, change the `$ErrorActionPreference` and try it!
 
 ```PowerShell
-Get-ItemThatDoesntExist
 # This should throw an error
+Get-ItemThatDoesntExist
+
 $ErrorActionPreference = 'Stop'
-Get-ItemThatDoesntExist
 # This should now say 'We caught the exception'
-$ErrorActionPreference = 'Break'
 Get-ItemThatDoesntExist
+
+$ErrorActionPreference = 'Break'
 # This will break in to the debugger. Press Q to exit.
+Get-ItemThatDoesntExist
 ```
 
 ---
