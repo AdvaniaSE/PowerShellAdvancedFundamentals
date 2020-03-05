@@ -2,7 +2,7 @@
 
 - One of these strings contains the character 'ά' (Greek lower case acute alpha). Using the -match operator, set the string containing this character to the variable `$MyString`.
 
-*Notice: You can also get the strings by running the command*
+*Notice:* You can also get the strings by running the command
 
 ```PowerShell
 $Text = Get-Content '\PowerShellAdvancedFundamentals\04. Regex\sentence.txt'
