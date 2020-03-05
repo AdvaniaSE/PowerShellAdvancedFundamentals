@@ -65,11 +65,11 @@ Select-String -InputObject $MyString -Pattern '[^\s0-9]+\.' -AllMatches
 Explanation:
 
 ```PowerShell
-[ # Start match character in list
-  ^ # Negated list, Any character not in the following list
+[ # Start match character in group
+  ^ # Negated group, Any character not in the following list
   \s # Any whitespace character
   0-9 # Any number between 0 and 9
-] # End match character in list
+] # End match character in group
   + # Quantifier, one or more of the previous (in this case, the capturegroup)
   \. # Literal dot '.'
 ```
