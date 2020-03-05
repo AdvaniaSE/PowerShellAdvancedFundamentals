@@ -5,7 +5,9 @@
 
 Example: `"$Content | Select-CDInfoAsJson"` should result in:
 
-`{
+```PowerShell
+{
     "TITLE":  "Greatest Hits",
     "ARTIST":  "Dolly Parton"
-}`
+}
+```
