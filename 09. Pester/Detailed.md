@@ -9,8 +9,8 @@ Create unit tests for `Add-OneToValue` and `Add-OneToString`.
 - `Add-OneToValue 10` should output `11`.
 - `Add-OneToValue -5` should output `-4`.
 
-Because Add-OneToValue is defined as a private function it is not exposed by your normal powershell session.
-By using Pesters InModuleScope command you can execute test code inside the module, giving you access to its internal functions, variables, and aliases
+Because `Add-OneToValue` is defined as a private function it is not exposed to your normal PowerShell session.
+By using Pester's `InModuleScope` command you can execute test code inside the module, giving you access to its internal functions, variables, and aliases.
 
 ```PowerShell
 InModuleScope PSAddOne { 
@@ -40,7 +40,7 @@ Describe "Add-OneToString" {
     }
 
     It "Should require four characters and one digit" {
-        {Add-OneToString 'abc'} | Should -Throw
+        { Add-OneToString 'abc' } | Should -Throw
     }
 }
 ```
@@ -49,9 +49,9 @@ Describe "Add-OneToString" {
 
 1. Test the functions using `Invoke-Pester` with the functions loaded.
 2. Add the tests to `PSAddOne/Test/Unit/PSAddOne.Tests.ps1` and re-build the module from the previous lab using Plaster and `Invoke-Build`.
-3. There is a bug in the code for Add-OneToString where the Regex prevents us from using negative numbers. use Test driven development to solve this bug.
-    
-- Write a test to verify this bug.
+3. There is a bug in the code for Add-OneToString where the Regex prevents us from using negative numbers.
+    - Use test-driven development to solve this bug.
+    - Write a test to verify this bug.
 
 ```Powershell
 Describe "Add-OneToString" {
@@ -65,9 +65,8 @@ Describe "Add-OneToString" {
 }
 ```
 
-- Run pester to make shure it shows test error.
-
-- rewrite the function to allow input of negative numbers between -1 and -9
+- Run pester to make sure it shows test error.
+- Rewrite the function to allow input of negative numbers between -1 and -9.
 
 ```Powershell
 function Add-OneToString {
