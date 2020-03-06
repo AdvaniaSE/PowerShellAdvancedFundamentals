@@ -49,7 +49,7 @@ Get-PSBreakpoint | Remove-PSBreakpoint
 - Set a breakpoint on the variable `$Result`
 - Run the script
   - Verify that the script went into debug mode when referring to `$Result`
-  - Use the command to let the script finish
+  - Use `c` or `continue` to let the script finish
 - Remove the breakpoint
 
 ```PowerShell
@@ -94,31 +94,36 @@ Get-PSBreakpoint | Remove-PSBreakpoint
 
 Test debugging using the provided script "TestScript.ps1" in VS Code.
 
-- Line
-  - Set a breakpoint on line 18 by clicking to the left of the line, placing a red dot
-  - Run the script
-    - Add `$Result[0]` as an expression in the watch window, it should be null
-    - Verify that the value of `$Result` is not showing up when hovering the mouse over it
-    - Use the GUI buttons to step over the command
-    - Examine the value of `$Result` by hovering the mouse over the value again
-    - Click the continue button
-  - Remove the breakpoint
-- Hit Count
-  - Set a breakpoint on line 21 and add a hit count condition of 2 to the breakpoint
-    - Place a breakpoint on line 21, right click it and choose "Edit Breakpoint..."
-    - Choose "Hit Count" and enter the number 2
-  - Run the script
-    - Verify that the current file in the iteration is not the first file in `$Result` by hovering the mouse over or looking at the Variables window in VS Code
-    - Click the continue button
-  - Remove the breakpoint
-- *Optional:* Expression
-  - Set a new breakpoint on line 21 and add a condition to break based on a specific file name amongst the files found
-    - Find out the name of a file in the list found by the script
-    - Place a breakpoint on line 21, right click it and choose "Edit Breakpoint..."
-    - Choose "Expression" and write `$File -like '*<TheNameOfTheFile>*'`
-  - Run the script
-    - Verify that `$File` contains the file specified
-  - Remove the breakpoint
+### Breakpoint
+
+- Set a breakpoint on line 18 by clicking to the left of the line, placing a red dot
+- Run the script
+  - Add `$Result[0]` as an expression in the watch window, it should be null
+  - Verify that the value of `$Result` is not showing up when hovering the mouse over it
+  - Use the GUI buttons to step over the command
+  - Examine the value of `$Result` by hovering the mouse over the value again
+  - Click the continue button
+- Remove the breakpoint
+
+### Hit Count
+
+- Set a breakpoint on line 21 and add a hit count condition of 2 to the breakpoint
+  - Place a breakpoint on line 21, right click it and choose "Edit Breakpoint..."
+  - Choose "Hit Count" and enter the number 2
+- Run the script
+  - Verify that the current file in the iteration is not the first file in `$Result` by hovering the mouse over or looking at the Variables window in VS Code
+  - Click the continue button
+- Remove the breakpoint
+
+### *Optional:* Expression
+
+- Set a new breakpoint on line 21 and add a condition to break based on a specific file name amongst the files found
+  - Find out the name of a file in the list found by the script
+  - Place a breakpoint on line 21, right click it and choose "Edit Breakpoint..."
+  - Choose "Expression" and write `$File -like '*<TheNameOfTheFile>*'`
+- Run the script
+  - Verify that `$File` contains the file specified
+- Remove the breakpoint
 
 ---
 
