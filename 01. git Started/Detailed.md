@@ -107,3 +107,4 @@ git push
 
 - [git-scm](https://git-scm.com/docs/gittutorial)
 - [.gitignore](https://git-scm.com/docs/gitignore)
+- posh-git - A Git plugin for the PowerShell prompt. `Find-Module Posh-Git | Install-Module`
