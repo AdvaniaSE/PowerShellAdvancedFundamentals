@@ -55,14 +55,14 @@ class Course {
 }
 
 # Create a new course object
-$Course = [Course]::new()
+$Course = New-Object Course
 
 # Create participants and set the name and age
-$First = [Participant]::new()
+$First = New-Object Participant
 $First.Name = 'Person 1'
 $First.Age = 30
 
-$Second = [Participant]::new()
+$Second = New-Object Participant
 $Second.Name = 'Person 2'
 $Second.Age = 40
 
