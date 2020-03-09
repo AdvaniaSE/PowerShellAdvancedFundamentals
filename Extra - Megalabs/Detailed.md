@@ -2,7 +2,48 @@
 
 A collection of extra, more complex labs.
 
-- 
+---
+
+## `Get-LineSum`
+
+- Write the function `Get-LineSum` that has a string parameter called `Path`. The function should validate that the file specified in this parameter exists. Specifying the file "Textlab.txt" in this folder should summarizes the input values and presents a result as an output from the function.
+
+```PowerShell
+# ExampleFile.txt content
++1 # Starts with 1
++4 # Incremented to 5
+-3 # Reduced to 2
++9 # Incremented to 11
+
+# Should output 11
+Get-LineSum .\ExampleFile.txt
+```
+
+- Add a switch parameter called `FirstDoubleOccurrence` to the function. If this parameter is used the function should instead output the first value that is reached twice during the summarization of the values.
+
+```PowerShell
+# ExampleFile2.txt content
+
++10 # Starts with 10  
+-2 # Reduced to 8  
++3 # Incremented to 11  
+-5 # Reduced to 6  
++2 # Incremented to 8 again
+...
+
+# The function should output 8 even if there are more numbers
+Get-LineSum .\ExampleFile2.txt -FirstDoubleOccurrence
+```
+
+---
+
+- Create a Star Wars module!
+  - Using the Star wars API at [https://swapi.co](https://swapi.co)
+  - A public git repo on GitHub to store it.
+  - Include error handling for searches without hits.
+  - Make it possible to output the result in Wookiee.
+  - Write tests to verify functionality
+    - Mock response from the API using Pester's Mock keywords
 
 ---
 
