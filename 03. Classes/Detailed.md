@@ -33,74 +33,50 @@ enum Month {
 
 ---
 
-## Class - Guessing Game
+## Class - Participant
 
-- Create the class `Game`
-  - Properties
-    - `[int] $GuessCount`
-    - `hidden [int] $Target`
-  - Constructor
-    - The constructor should set `$Target` to a random number between 1 and 100
-    - Set `$GuessCount` to 0
-  - Method
-    - There should be one method called `Guess` which takes a number as a parameter. The method should increase `$GuessCount` by one, compare the entered number to the property `$Target` and return strings according to the following:
-      - Lower than `$Target` - 'The guess was too low, try again!'
-      - Higher than `$Target` - 'The guess was too high, try again!'
-      - Same as `$Target` - 'You won in `$GuessCount` guesses!'
-
-- *Optional:*
-  - Create an enum called `GameState` with two values
-    - InProgress
-    - Completed
-  - Add the property `[GameState] $State` to the `Game` class
-    - Set `$State` to `[GameState]::InProgress` in the constructor
-    - Set `$State` to `[GameState]::Completed` when the user guesses correctly
-  - Make the `Guess` method return another message if the game has already been completed
+- Write the class `Participant` with the following two properties
+  - `[string] $Name`
+  - `[int] $Age`
+- Use the class `Participant` in a new class called `Course` with two properties of its own
+  - `[Participant[]] $Participants`
+  - `[datetime] $Date`
+- Create a new course and add two participants to it
 
 ```PowerShell
-enum GameState {
-    InProgress
-    Complete
+class Participant {
+    [string] $Name
+    [int] $Age
 }
 
-class Game {
-    # Properties
-    [int] $GuessCount
-    [GameState] $State
-
-    # Hidden Property
-    hidden [int] $Target
-
-    # Constructor creates a new Game object and randomizes target value between 1 and 100
-    Game() {
-        $this.Target = Get-Random -Minimum 1 -Maximum 100
-        $this.GuessCount = 0
-        $this.State = [GameState]::InProgress
-    }
-
-    # Method that lets the user guess the generated target number
-    [string] Guess([int]$Guess) {
-        $this.GuessCount++
-        $GuessResult = ''
-
-        if ($Guess -eq $this.Target) {
-            $this.State = [GameState]::Complete
-
-            $GuessResult = "You won in $($this.GuessCount) guesses!"
-        }
-        elseif ($Guess -lt $this.Target) {
-            $GuessResult = 'Target is higher, try again!'
-        }
-        elseif ($Guess -gt $this.Target) {
-            $GuessResult = 'Target is lower, try again!'
-        }
-
-        return $GuessResult
-    }
+class Course {
+    [Participant[]] $Participants
+    [datetime] $Date
 }
+
+# Create a new course object
+$Course = [Course]::new()
+
+# Create participants and set the name and age
+$First = [Participant]::new()
+$First.Name = 'Person 1'
+$First.Age = 30
+
+$Second = [Participant]::new()
+$Second.Name = 'Person 2'
+$Second.Age = 40
+
+# Add current date and participants to course
+$Course.Date = Get-Date
+$Course.Participants += $First
+$Course.Participants += $Second
+
+# Inspect the values of the course and participants
+Write-Output $Course
+Write-Output $Course.Participants
 ```
 
-*Tip:* Use the keyword `using` to import classes from a module, importing a module with a class in normally will not import the class type.
+*Tip:* Use the keyword `using` to import classes from a module, importing a module with a class using `Import-Module` will not import the class type.
 
 ---
 
