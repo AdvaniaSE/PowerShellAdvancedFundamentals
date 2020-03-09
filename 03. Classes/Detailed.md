@@ -41,7 +41,7 @@ enum Month {
 - Use the class `Participant` in a new class called `Course` with two properties of its own
   - `[Participant[]] $Participants`
   - `[datetime] $Date`
-- Create a new course and add two participants to it
+- Create a new `Course` object and add two participants to it
 
 ```PowerShell
 class Participant {
