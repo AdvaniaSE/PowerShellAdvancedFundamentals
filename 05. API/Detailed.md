@@ -65,6 +65,16 @@ RawContentLength  : 250
 
 - Create a JSON object in PowerShell with a title, body and userId, and post it to `/posts` with `application/json` as the Content-Type.
 
+```PowerShell
+$Body = @{
+    title = 'post'
+    body = 'text'
+    userId = 1
+} | ConvertTo-Json
+
+Invoke-RestMethod -Method Post -ContentType 'application/json' -Body $Body -Uri 'https://jsonplaceholder.typicode.com/posts'
+```
+
 ---
 
 ## XML
