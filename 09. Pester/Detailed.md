@@ -49,9 +49,11 @@ Describe "Add-OneToString" {
 
 1. Test the functions using `Invoke-Pester` with the functions loaded.
 2. Add the tests to `PSAddOne/Test/Unit/PSAddOne.Tests.ps1` and re-build the module from the previous lab using Plaster and `Invoke-Build`.
-3. There is a bug in the code for Add-OneToString where the Regex prevents us from using negative numbers.
-    - Use test-driven development to solve this bug.
-    - Write a test to verify this bug.
+
+There is a bug in the code for Add-OneToString where the Regex prevents us from using negative numbers.
+
+- Use test-driven development to solve this bug.
+- Write a test to verify this bug and add it to the test file.
 
 ```Powershell
 Describe "Add-OneToString" {
