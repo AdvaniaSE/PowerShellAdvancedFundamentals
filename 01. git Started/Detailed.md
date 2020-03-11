@@ -1,6 +1,6 @@
 # Lab 01. Detailed - git Started
 
-- Install [git for Windows](https://git-scm.com/downloads)
+- Install [git](https://git-scm.com/downloads)
   - Set default editor to VS Code
   - git from Command Line and 3rd-party software
   - Choose native Windows Secure Channel Library
