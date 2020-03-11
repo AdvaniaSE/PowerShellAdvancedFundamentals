@@ -2,7 +2,7 @@
 
 ## Debug in PowerShell
 
-Test debugging using the provided script "TestScript.ps1" in a PowerShell console.
+Test debugging using the provided script "DebuggingScript.ps1" in a PowerShell console.
 
 ### Line
 
@@ -40,7 +40,7 @@ Test debugging using the provided script "TestScript.ps1" in a PowerShell consol
 
 ## Debug in VS Code
 
-Test debugging using the provided script "TestScript.ps1" in VS Code.
+Test debugging using the provided script "DebuggingScript.ps1" in VS Code.
 
 ### Breakpoint
 
