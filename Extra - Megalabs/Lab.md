@@ -6,7 +6,7 @@ A collection of extra, more complex labs.
 
 ## `Get-LineSum`
 
-- Write the function `Get-LineSum` that has a string parameter called `Path`. The function should validate that the file specified in this parameter exists. Specifying the file "Textlab.txt" in this folder should summarizes the input values and presents a result as an output from the function.
+- Write the function `Get-LineSum` that has a string parameter called `Path`. The function should validate that the file specified in this parameter exists. Specifying the file "Textlab.txt" in this folder should summarizes the input values and presents a result as an output from the function
 
 ```PowerShell
 # ExampleFile.txt content
@@ -19,7 +19,7 @@ A collection of extra, more complex labs.
 Get-LineSum .\ExampleFile.txt
 ```
 
-- Add a switch parameter called `FirstDoubleOccurrence` to the function. If this parameter is used the function should instead output the first value that is reached twice during the summarization of the values.
+- Add a switch parameter called `FirstDoubleOccurrence` to the function. If this parameter is used the function should instead output the first value that is reached twice during the summarization of the values
 
 ```PowerShell
 # ExampleFile2.txt content

@@ -6,8 +6,8 @@ Create unit tests for `Add-OneToValue` and `Add-OneToString`.
 
 ### `Add-OneToValue`
 
-- `Add-OneToValue 10` should output `11`.
-- `Add-OneToValue -5` should output `-4`.
+- `Add-OneToValue 10` should output `11`
+- `Add-OneToValue -5` should output `-4`
 
 Because `Add-OneToValue` is defined as a private function it is not exposed to your normal PowerShell session.
 By using Pester's `InModuleScope` command you can execute test code inside the module, giving you access to its internal functions, variables, and aliases.
@@ -28,8 +28,8 @@ InModuleScope PSAddOne {
 
 ### `Add-OneToString`
 
-- `Add-OneToString 'test1'` should output `test2`.
-- `Add-OneToString 'abc'` should throw.
+- `Add-OneToString 'test1'` should output `test2`
+- `Add-OneToString 'abc'` should throw
 
 When testing for parameter validation errors, the test block needs to be in curly braces `{}` to properly capture the error.
 
@@ -52,8 +52,8 @@ Describe "Add-OneToString" {
 
 There is a bug in the code for Add-OneToString where the Regex prevents us from using negative numbers.
 
-- Use test-driven development to solve this bug.
-- Write a test to verify this bug and add it to the test file.
+- Use test-driven development to solve this bug
+- Write a test to verify this bug and add it to the test file
 
 ```Powershell
 Describe "Add-OneToString" {
@@ -67,8 +67,8 @@ Describe "Add-OneToString" {
 }
 ```
 
-- Run pester to make sure it shows test error.
-- Rewrite the function to allow input of negative numbers between -1 and -9.
+- Run pester to make sure it shows test error
+- Rewrite the function to allow input of negative numbers between -1 and -9
 
 ```Powershell
 function Add-OneToString {
@@ -97,7 +97,7 @@ function Add-OneToString {
 }
 ```
 
-- Run pester again to verify the bug has been fixed.
+- Run pester again to verify the bug has been fixed
 
 ---
 

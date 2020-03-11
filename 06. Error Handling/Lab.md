@@ -27,7 +27,7 @@
 
 ---
 
-- Add a finally block outputting the string "Finally in the finally block." and verify that this block is run no matter how the code flows.
+- Add a finally block outputting the string "Finally in the finally block." and verify that this block is run no matter which path the code takes
 
 ---
 

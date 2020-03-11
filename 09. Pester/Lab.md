@@ -6,13 +6,13 @@ Create unit tests for `Add-OneToValue` and `Add-OneToString`.
 
 ### `Add-OneToValue`
 
-- `Add-OneToValue 10` should output `11`.
-- `Add-OneToValue -5` should output `-4`.
+- `Add-OneToValue 10` should output `11`
+- `Add-OneToValue -5` should output `-4`
 
 ### `Add-OneToString`
 
-- `Add-OneToString "test1"` should output `"test2"`.
-- `Add-OneToString ""` should throw.
+- `Add-OneToString "test1"` should output `"test2"`
+- `Add-OneToString ""` should throw
 
 ## Run Tests
 
@@ -21,7 +21,7 @@ Create unit tests for `Add-OneToValue` and `Add-OneToString`.
 
 There is a bug in the code for Add-OneToString where the Regex prevents us from using negative numbers. use Test driven development to solve this bug.
 
-- Write a test to verify this bug.
-- Run pester to make shure it shows test error.
+- Write a test to verify this bug
+- Run pester to make shure it shows test error
 - Rewrite the function to allow input of negative numbers between -1 and -9
-- Run pester again to verify the bug has been fixed.
+- Run pester again to verify the bug has been fixed

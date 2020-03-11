@@ -4,7 +4,7 @@ Note that the functions written in this lab are only examples of how they could 
 
 ## Create any or all of the filters below
 
-1. A filter called `Select-LessThanTen` that selects and outputs numbers less than 10 from input.
+1. A filter called `Select-LessThanTen` that selects and outputs numbers less than 10 from input
 
 ```PowerShell
 # A filter that selects numbers less than 10
@@ -18,7 +18,7 @@ filter Select-LessThanTen {
 }
 ```
 
-2. A filter called `Select-EvenNumber` that selects and outputs even numbers from input.
+2. A filter called `Select-EvenNumber` that selects and outputs even numbers from input
 
 ```PowerShell
 # A filter that selects even numbers
@@ -31,13 +31,13 @@ filter Select-EvenNumber {
 }
 ```
 
-3. A filter of your own choice that uses the input in pipeline.
+3. A filter of your own choice that uses the input in pipeline
 
 ---
 
 ## Create any or all of the functions below
 
-1. `New-FileInDirectory` - A function that creates a file in a directory with the file name as the parameter `Name`.
+1. `New-FileInDirectory` - A function that creates a file in a directory with the file name as the parameter `Name`
 
 ```PowerShell
 function New-FileInDirectory {
@@ -49,7 +49,7 @@ function New-FileInDirectory {
 }
 ```
 
-2. `Add-FiveToNumber` - A function that adds five to the parameter `Number` and outputs the result.
+2. `Add-FiveToNumber` - A function that adds five to the parameter `Number` and outputs the result
 
 ```PowerShell
 function Add-FiveToNumber {
@@ -71,9 +71,9 @@ function Add-FiveToNumber {
 
 Add parameters and validation to the function.
 
-- Add a `string` parameter `Path` that decides the location of the new file, with validation that the directory exists.
-- Add validation to the `Name` parameter to ensure that the file name is a `string` between 5 to 10 characters.
-- *Optional:* Add the `string` parameter `Content` for the text that the new file should contain.
+- Add a `string` parameter `Path` that decides the location of the new file, with validation that the directory exists
+- Add validation to the `Name` parameter to ensure that the file name is a `string` between 5 to 10 characters
+- *Optional:* Add the `string` parameter `Content` for the text that the new file should contain
 
 ```PowerShell
 function New-FileInDirectory {
@@ -110,9 +110,9 @@ function New-FileInDirectory {
 
 Add validation and help data.
 
-- Add validation to the parameter `Number` to ensure it is a positive number less than 1000.
-- Add at least synopsis as comment-based help to the function.
-- Add OutputType `int` to the function.
+- Add validation to the parameter `Number` to ensure it is a positive number less than 1000
+- Add at least synopsis as comment-based help to the function
+- Add OutputType `int` to the function
 
 ```PowerShell
 <#
@@ -143,7 +143,7 @@ function Add-FiveToNumber {
 
 Write an advanced function that lists every day between now and a date in the future.
 
-- Add a `datetime` parameter called `Date` with validation that the date is in the future.
+- Add a `datetime` parameter called `Date` with validation that the date is in the future
 
 ```PowerShell
 function Get-EachDayUntilDate {
