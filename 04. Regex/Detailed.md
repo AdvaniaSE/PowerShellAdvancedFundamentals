@@ -1,6 +1,6 @@
 # Lab 04. Detailed - Regex
 
-- One of these strings contains the character 'ά' (Greek lower case acute alpha). Using the -match operator, set the string containing this character to the variable $MyString.
+- One of these strings contains the character 'ά' (Greek lower case acute alpha). Using the -match operator, set the string containing this character to the variable $MyString
 
 *Notice:* You can also get the strings by running the command
 
@@ -16,7 +16,7 @@ $MyString = $text -match 'ά'
 
 ```
 
-- In this string there are recurring patterns of between 1 and 6 '§' characters. Using the -replace operator, replace each occurrence with one newline.
+- In this string there are recurring patterns of between 1 and 6 '§' characters. Using the -replace operator, replace each occurrence with one newline
 
 ```Powershell
 $MyString = $MyString -replace '§+',"`n"
@@ -24,7 +24,7 @@ $MyString = $MyString -replace '§+',"`n"
 
 ---
 
-- Using `Select-String`, find all text in the variable matching a word boundary in the `$MyString` variable.
+- Using `Select-String`, find all text in the variable matching a word boundary in the `$MyString` variable
 
 ```Powershell
 Select-String -InputObject $MyString -Pattern '\w' -AllMatches
@@ -34,7 +34,7 @@ Select-String -InputObject $MyString -Pattern '\w' -AllMatches
 
 ---
 
-- Using `Select-String`, find all characters in the English alphabet in the `$MyString` variable.
+- Using `Select-String`, find all characters in the English alphabet in the `$MyString` variable
 
 ```Powershell
 Select-String -InputObject $MyString -Pattern '[a-zA-Z]+' -AllMatches
@@ -44,7 +44,7 @@ Select-String -InputObject $MyString -Pattern '[a-zA-Z]+' -AllMatches
 
 ---
 
-- Using the `[regex]` class, find all words written with Greek letters in the `$MyString` variable.
+- Using the `[regex]` class, find all words written with Greek letters in the `$MyString` variable
 
 ```Powershell
 $Pattern = '\p{IsGreek}+'
@@ -56,7 +56,7 @@ $AllMatches.Value
 
 ---
 
-- Using `Select-String`, find all words ending a sentence (words that end with a .) in the `$MyString` variable.
+- Using `Select-String`, find all words ending a sentence (words that end with a .) in the `$MyString` variable
 
 ```Powershell
 Select-String -InputObject $MyString -Pattern '[^\s0-9]+\.' -AllMatches
@@ -80,7 +80,7 @@ Explanation:
   - The line order (1 - 6) in which the lines are sorted right now
   - The text of the line without '"'
   - The length of the line, as specified in the parenthesis ("28 letters")
-- Sort the resulting list of custom objects by length of the sentence.
+- Sort the resulting list of custom objects by length of the sentence
 
 ```Powershell
 $Pattern = '(?<Line>[0-9])\.\s{1}"(?<Text>[^("]*)"\s\((?<PhraseLength>[\d]{2})'

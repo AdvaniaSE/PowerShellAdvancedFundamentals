@@ -1,5 +1,12 @@
 # Lab 01. git Started
 
+- Install [git](https://git-scm.com/downloads)
+  - Set default editor to VS Code
+  - git from Command Line and 3rd-party software
+  - Choose native Windows Secure Channel Library
+
+---
+
 - Create a local git repository
 - Create a text file \<YourName\>.txt
 - Commit the text file to the git repository

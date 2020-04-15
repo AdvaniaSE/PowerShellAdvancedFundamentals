@@ -79,13 +79,13 @@ catch [System.Management.Automation.ValidationMetadataException] {
     Write-Output "I captured the metadata error."
 }
 catch {
-    Write-Output 'This is an unhandled exception'
+    Write-Output 'This exception is not specified'
 }
 ```
 
 ---
 
-- Add a finally block outputting the string "Finally in the finally block." and verify that this block is run no matter how the code flows.
+- Add a finally block outputting the string "Finally in the finally block." and verify that this block is run no matter which path the code takes
 
 ```PowerShell
 # First, lets try the last command we run
@@ -96,7 +96,7 @@ catch [System.Management.Automation.ValidationMetadataException] {
     Write-Output "I captured the metadata error."
 }
 catch {
-    Write-Output 'This is an unhandled exception'
+    Write-Output 'This exception is not specified'
 }
 finally {
     Write-Output 'Finally in the finally block.'
@@ -110,7 +110,7 @@ catch [System.Management.Automation.ValidationMetadataException] {
     Write-Output "I captured the metadata error."
 }
 catch {
-    Write-Output 'This is an unhandled exception'
+    Write-Output 'This exception is not specified'
 }
 finally {
     Write-Output 'Finally in the finally block.'
@@ -124,7 +124,7 @@ catch [System.Management.Automation.ValidationMetadataException] {
     Write-Output "I captured the metadata error."
 }
 catch {
-    Write-Output 'This is an unhandled exception'
+    Write-Output 'This exception is not specified'
 }
 finally {
     Write-Output 'Finally in the finally block.'
@@ -143,10 +143,10 @@ finally {
   - Suspend
   - Break
   
-To rerun the same script we can start by creating a function that will break.
+To re-run the same script we can start by creating a function that will break.
 
 ```PowerShell
-Function Get-ItemThatDoesntExist {
+Function Get-ItemThatDoesNotExist {
     try {
         Get-Item C:\ThisPathDoesNotExist\
     }
@@ -160,15 +160,15 @@ Now we can run the function in PowerShell, change the `$ErrorActionPreference` a
 
 ```PowerShell
 # This should throw an error
-Get-ItemThatDoesntExist
+Get-ItemThatDoesNotExist
 
 $ErrorActionPreference = 'Stop'
 # This should now say 'We caught the exception'
-Get-ItemThatDoesntExist
+Get-ItemThatDoesNotExist
 
 $ErrorActionPreference = 'Break'
 # This will break in to the debugger. Press Q to exit.
-Get-ItemThatDoesntExist
+Get-ItemThatDoesNotExist
 ```
 
 ---

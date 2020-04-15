@@ -8,19 +8,19 @@ The endpoint for the testing API is `https://jsonplaceholder.typicode.com`.
 
 ### Get
 
-- Get all posts from the `/posts` endpoint.
+- Get all posts from the `/posts` endpoint
 
 ```PowerShell
 Invoke-RestMethod 'https://jsonplaceholder.typicode.com/posts'
 ```
 
-- Get a specific resource from the `/posts` endpoint using any accepted id.
+- Get a specific resource from the `/posts` endpoint using any accepted id
 
 ```PowerShell
 Invoke-RestMethod 'https://jsonplaceholder.typicode.com/posts/12'
 ```
 
-- Compare the results from using `Invoke-WebRequest` and `Invoke-RestMethod`.
+- Compare the results from using `Invoke-WebRequest` and `Invoke-RestMethod`
 
 ```PowerShell
 Invoke-RestMethod 'https://jsonplaceholder.typicode.com/posts/12'
@@ -63,19 +63,29 @@ RawContentLength  : 250
 
 ### Post
 
-- Create a JSON object in PowerShell with a title, body and userId, and post it to `/posts` with `application/json` as the Content-Type.
+- Create a JSON object in PowerShell with a title, body and userId, and post it to `/posts` with `application/json` as the content type
+
+```PowerShell
+$Body = @{
+    title = 'post'
+    body = 'text'
+    userId = 1
+} | ConvertTo-Json
+
+Invoke-RestMethod -Method Post -ContentType 'application/json' -Body $Body -Uri 'https://jsonplaceholder.typicode.com/posts'
+```
 
 ---
 
 ## XML
 
-- Get the XML document at `https://www.w3schools.com/xml/cd_catalog.xml` using PowerShell, either by saving the file or by getting the data directly from the web address as you would with an API.
+- Get the XML document at `https://www.w3schools.com/xml/cd_catalog.xml` using PowerShell, either by saving the file or by getting the data directly from the web address as you would with an API
 
 ```PowerShell
 $CDs = Invoke-RestMethod 'https://www.w3schools.com/xml/cd_catalog.xml'
 ```
 
-- *Optional:* Write an advanced function called `Select-CDInfoAsJson` which accepts pipeline input, selects the Title and Artist properties and outputs it as JSON.
+- *Optional:* Write an advanced function called `Select-CDInfoAsJson` which accepts pipeline input, selects the Title and Artist properties and outputs it as JSON
 
 `"$CD | Select-CDInfoAsJson"` should result in:
 

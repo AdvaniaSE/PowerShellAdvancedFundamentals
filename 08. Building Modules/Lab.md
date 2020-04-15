@@ -21,16 +21,16 @@ Examples:
 
 ## Plaster
 
-- Make sure the following modules are installed on your computer.
+- Make sure the following modules are installed on your computer
   - [Plaster](https://github.com/PowerShell/Plaster)
   - [InvokeBuild](https://github.com/nightroman/Invoke-Build)
   - [PowerShellGet](https://docs.microsoft.com/en-us/powershell/module/powershellget)
   - [ModuleBuilder](https://github.com/PoshCode/ModuleBuilder)
   - [Pester](https://github.com/pester/Pester)
-- Download the [gyPSum](https://github.com/SimonWahlin/gyPSum) template.
-- Run the following command, specifying the directory of the gyPSum template.
+- Download the [gyPSum](https://github.com/SimonWahlin/gyPSum) template
+- Run the following command, specifying the directory of the gyPSum template
   - `Invoke-Plaster -TemplatePath .\gyPSum\Module -DestinationPath .`
-- Create module `PSAddOne`.
+- Create module `PSAddOne`
 
 ### Private Function
 

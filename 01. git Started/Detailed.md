@@ -1,5 +1,12 @@
 # Lab 01. Detailed - git Started
 
+- Install [git](https://git-scm.com/downloads)
+  - Set default editor to VS Code
+  - git from Command Line and 3rd-party software
+  - Choose native Windows Secure Channel Library
+
+---
+
 - Create a local git repository
 
 ```PowerShell
@@ -58,15 +65,15 @@ git commit -m 'Added text to file in lab 01'
 
 - Create a GitHub account if you don't have one
 
-Go to [GitHub](https://github.com/) and sign up for a free account.
+Go to [GitHub](https://github.com/) and sign up for a free account
 
 - Fork the course solution repository on GitHub
 
-  - Go to the specified course solution repository. If you're unsure which repository this is, please ask the course leader(s).
-  - Click the ![fork](../Images/fork.png) button.
+  - Go to the specified course solution repository. If you're unsure which repository this is, please ask the course leader(s)
+  - Click the ![fork](../Images/fork.png) button
 
 - Clone the forked repository to your computer
-  - Click the ![clone](../Images/clone.png) button and copy the link.
+  - Click the ![clone](../Images/clone.png) button and copy the link
 
 ```PowerShell
 Set-Location 'C:\Temp'

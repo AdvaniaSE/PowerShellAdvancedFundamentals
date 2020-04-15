@@ -2,7 +2,7 @@
 
 ## Debug in PowerShell
 
-Test debugging using the provided script "TestScript.ps1" in a PowerShell console.
+Test debugging using the provided script "DebuggingScript.ps1" in a PowerShell console.
 
 ### Line
 
@@ -16,10 +16,10 @@ Test debugging using the provided script "TestScript.ps1" in a PowerShell consol
 
 ```PowerShell
 # Set the breakpoint
-Set-PSBreakpoint -Script '.\07. Debugging\TestScript.ps1' -Line 18
+Set-PSBreakpoint -Script '.\07. Debugging\DebuggingScript.ps1' -Line 18
 
 # Execute the script
-& '.\07. Debugging\TestScript.ps1'
+& '.\07. Debugging\DebuggingScript.ps1'
 
 # Remove all breakpoints
 Get-PSBreakpoint | Remove-PSBreakpoint
@@ -35,10 +35,10 @@ Get-PSBreakpoint | Remove-PSBreakpoint
 
 ```PowerShell
 # Set the breakpoint
-Set-PSBreakpoint -Script '.\07. Debugging\TestScript.ps1' -Command 'Write-Output'
+Set-PSBreakpoint -Script '.\07. Debugging\DebuggingScript.ps1' -Command 'Write-Output'
 
 # Execute the script
-& '.\07. Debugging\TestScript.ps1'
+& '.\07. Debugging\DebuggingScript.ps1'
 
 # Remove all breakpoints
 Get-PSBreakpoint | Remove-PSBreakpoint
@@ -54,10 +54,10 @@ Get-PSBreakpoint | Remove-PSBreakpoint
 
 ```PowerShell
 # Set the breakpoint
-Set-PSBreakpoint -Script '.\07. Debugging\TestScript.ps1' -Variable 'Result'
+Set-PSBreakpoint -Script '.\07. Debugging\DebuggingScript.ps1' -Variable 'Result'
 
 # Execute the script
-& '.\07. Debugging\TestScript.ps1'
+& '.\07. Debugging\DebuggingScript.ps1'
 
 # Remove all breakpoints
 Get-PSBreakpoint | Remove-PSBreakpoint
@@ -73,7 +73,7 @@ Get-PSBreakpoint | Remove-PSBreakpoint
 
 ```PowerShell
 # Set the breakpoint
-Set-PSBreakpoint -Script '.\07. Debugging\TestScript.ps1' -Line 21 -Action {
+Set-PSBreakpoint -Script '.\07. Debugging\DebuggingScript.ps1' -Line 21 -Action {
     # Action lets you set conditions for breaking
     # In this case if there are at least 3 files found when the script hits line 21
     if ($Result.Count -ge 3) {
@@ -82,7 +82,7 @@ Set-PSBreakpoint -Script '.\07. Debugging\TestScript.ps1' -Line 21 -Action {
 }
 
 # Execute the script
-& '.\07. Debugging\TestScript.ps1'
+& '.\07. Debugging\DebuggingScript.ps1'
 
 # Remove all breakpoints
 Get-PSBreakpoint | Remove-PSBreakpoint
@@ -92,7 +92,7 @@ Get-PSBreakpoint | Remove-PSBreakpoint
 
 ## Debug in VS Code
 
-Test debugging using the provided script "TestScript.ps1" in VS Code.
+Test debugging using the provided script "DebuggingScript.ps1" in VS Code.
 
 ### Breakpoint
 
