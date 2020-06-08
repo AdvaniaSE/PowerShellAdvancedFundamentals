@@ -15,3 +15,4 @@
 
 - [PowerShell Overview](https://docs.microsoft.com/en-us/powershell/scripting/overview)
 - [Cascadia Code Font](https://github.com/microsoft/cascadia-code)
+- [VS Code Keybindings](https://code.visualstudio.com/docs/getstarted/keybindings#_default-keyboard-shortcuts)
