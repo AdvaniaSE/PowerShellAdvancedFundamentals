@@ -48,7 +48,7 @@ Get-PSBreakpoint | Remove-PSBreakpoint
 
 - Set a breakpoint on the variable `$Result`
 - Run the script
-  - Verify that the script went into debug mode when referring to `$Result`
+  - Verify that the script went into debug mode when referencing `$Result`
   - Use `c` or `continue` to let the script finish
 - Remove the breakpoint
 
