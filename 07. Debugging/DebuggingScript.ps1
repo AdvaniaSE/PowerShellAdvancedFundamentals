@@ -4,11 +4,11 @@ function Get-TempFiles {
     )
 
     try {
-        Get-ChildItem 'C:\Temp' -Recurse:$Recurse
+        Get-ChildItem 'C:\psadvfundamentals\' -Recurse:$Recurse
     }
     catch {
        Write-Output @(
-           'C:\Temp does not exist!',
+           'C:\psadvfundamentals does not exist!',
            'Here is a fake file',
            'Here is another one'
        )
