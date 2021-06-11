@@ -73,7 +73,9 @@ Go to [GitHub](https://github.com/) and sign up for a free account
   - Click the ![fork](../Images/fork.png) button
 
 - Clone the forked repository to your computer
-  - Click the ![clone](../Images/clone.png) button and copy the link
+  - Click the Code button and copy the link
+
+![clone](../Images/clone.png)
 
 ```PowerShell
 Set-Location 'C:\Temp'
