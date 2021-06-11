@@ -42,6 +42,12 @@ git add --all
 *Tip:* You can create a file called `.gitignore` to exclude certain files or directories from being included in your repository.
 
 ```PowerShell
+# Before running the commit, you may need to configure git with a username and email so changes can be tracked to a user.
+git config --global user.name "MyUsername"
+git config --global user.email "My.EmailAddress@domain.com"
+```
+
+```PowerShell
 # Then commit the changes with a message indicating why the change was made
 git commit -m 'Added new file for lab 01'
 ```

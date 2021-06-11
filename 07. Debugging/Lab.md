@@ -26,7 +26,7 @@ Test debugging using the provided script "DebuggingScript.ps1" in a PowerShell c
 
 - Set a breakpoint on the variable `$Result`
 - Run the script
-  - Verify that the script went into debug mode when referring to `$Result`
+  - Verify that the script went into debug mode when referencing `$Result`
   - Use the command to let the script finish
 - Remove the breakpoint
 
