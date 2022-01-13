@@ -14,6 +14,7 @@ The course for anyone with a fair bit of PowerShell scripting experience that wa
 - [PSKoans](https://github.com/vexx32/PSKoans)
 - [Community Best Practices](https://github.com/PoshCode/PowerShellPracticeAndStyle)
 - [Book: Learn PowerShell in a Month of Lunches, Linux and macOS Edition](https://www.manning.com/books/learn-powershell-in-a-month-of-lunches-linux-and-macos-edition)
+- [Video Series: Highway to PowerShell](https://www.youtube.com/playlist?list=PLjKVCo25i0an3dVaDNNVVTzd1wuK46UHv)
 
 ---
 
