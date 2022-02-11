@@ -4,7 +4,7 @@ function Get-TempFiles {
     )
 
     try {
-        Get-ChildItem 'C:\psadvfundamentals\' -Recurse:$Recurse
+        Get-ChildItem 'C:\psadvfundamentals\' -Recurse:$Recurse -ErrorAction 'Stop'
     }
     catch {
        Write-Output @(
