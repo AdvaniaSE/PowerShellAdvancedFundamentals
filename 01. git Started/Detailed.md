@@ -14,7 +14,7 @@
 Set-Location 'C:\Temp'
 
 # Start by creating a folder for Lab 01
-New-Item -Name 'Lab01' -FileType Directory
+New-Item -Name 'Lab01' -ItemType Directory
 
 # Move to the newly created folder
 Set-Location '.\Lab01'
