@@ -1,18 +1,13 @@
 # Lab 03. Classes
 
-## Enum - Months
+- Open the file in your repo named `MyFunctions.ps1` in VSCode.
 
-- Create an enum called `Month` with the name of each month as the values
-  - Run `[Month]3` in PowerShell, what do you get as output? Why?
+- Create an enum called `ColorEnum` with the values `red`, `green`, `blue`, `yellow`.
+  - Remove the ValidateSet on the `Color` parameter, in the `Add-CourseUser` function
+  - Cast the parameter `Color` as type `ColorEnum`
+  - Verify that tab completion still behaves as expected.
 
----
-
-## Class - Participant
-
-- Write the class `Participant` with the following two properties
-  - `[string] $Name`
-  - `[int] $Age`
-- Use the class `Participant` in a new class called `Course` with two properties of its own
-  - `[Participant[]] $Participants`
-  - `[datetime] $Date`
-- Create a new `Course` object and add two participants to it
+- Create a class, `User`, with the same properties as your database user
+  - Add a contructor to set the properties directly when instantiating the class
+  - Add an override of the ToString() Method to output the user as csv, matching the contents of `MyLabFile.csv`
+  - Replace the `$MyCsvUser = "$Name,$Age,{0},{1}" -f $Color, $UserId` line in the `Add-CourseUser` function with the newly created class and ToString() method

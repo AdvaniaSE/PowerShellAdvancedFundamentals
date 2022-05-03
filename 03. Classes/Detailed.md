@@ -1,82 +1,103 @@
 # Lab 03. Detailed - Classes
 
-## Enum - Months
+- Open the file in your repo named `MyFunctions.ps1` in VSCode.
 
-- Create an enum called `Month` with the name of each month as the values
+- Create an enum called `ColorEnum` with the values `red`, `green`, `blue`, `yellow`.
+  - Remove the ValidateSet on the `Color` parameter in the `Add-CourseUser` function
+  - Cast the parameter `Color` as type `ColorEnum`
+  - Verify that tab completion still behaves as expected.
 
 ```PowerShell
-enum Month {
-    January
-    February
-    March
-    April
-    May
-    June
-    July
-    August
-    September
-    October
-    November
-    December
+enum ColorEnum {
+    red
+    green
+    blue
+    yellow
 }
+
+###
+
+function Add-CourseUser {
+    [CmdletBinding()]
+    Param (
+        $DatabaseFile = "$PSScriptRoot\MyLabFile.csv",
+
+        [Parameter(Mandatory)]
+        [string]$Name,
+
+        [Parameter(Mandatory)]
+        [Int]$Age,
+
+        [Parameter(Mandatory)]
+        [ColorEnum]$Color,
+
+        $UserID = (Get-Random -Minimum 10 -Maximum 100000)
+    )
+    
+    $MyCsvUser = "$Name,$Age,{0},{1}" -f $Color, $UserId
+    
+    $NewCSv = Get-Content $DatabaseFile -Raw
+    $NewCSv += $MyCsvUser
+
+    Set-Content -Value $NewCSv -Path $DatabaseFile
+}
+
 ```
 
-- Run the following in PowerShell, what do you get as output?
-
-```PowerShell
-[Month]2
-
-# The output will be March
-```
-
-*Tip:* An enum is a defined, restricted set of values that are mapped to numbers. Using enums for program states or values normally represented by numbers in code can make them more human readable.
-
----
-
-## Class - Participant
-
-- Write the class `Participant` with the following two properties
-  - `[string] $Name`
-  - `[int] $Age`
-- Use the class `Participant` in a new class called `Course` with two properties of its own
-  - `[Participant[]] $Participants`
-  - `[datetime] $Date`
-- Create a new `Course` object and add two participants to it
+- Create a class, `Participant`, with the same properties as your database user
+  - Add a contructor to set the properties directly when instantiating the class
+  - Add an override of the ToString() Method to output the user as csv, matching the contents of `MyLabFile.csv`
+  - Replace the `$MyCsvUser = "$Name,$Age,{0},{1}" -f $Color, $UserId` line in the `Add-CourseUser` function with the newly created class and ToString() method
 
 ```PowerShell
 class Participant {
     [string] $Name
     [int] $Age
+    [ColorEnum] $Color 
+    [int] $Id
+
+    Participant([String]$Name, [int]$Age, [ColorEnum]$Color, [int]$Id) {
+        $This.Name = $Name
+        $This.Age = $Age
+        $This.Color = $Color
+        $This.Id = $Id
+    }
+
+    [string] ToString() {
+        Return '{0},{1},{2},{3}' -f $This.Name, $This.Age, $This.Color, $This.Id
+    }
 }
 
-class Course {
-    [Participant[]] $Participants
-    [datetime] $Date
+###
+
+function Add-CourseUser {
+    [CmdletBinding()]
+    Param (
+        $DatabaseFile = "$PSScriptRoot\MyLabFile.csv",
+
+        [Parameter(Mandatory)]
+        [string]$Name,
+
+        [Parameter(Mandatory)]
+        [Int]$Age,
+
+        [Parameter(Mandatory)]
+        [ColorEnum]$Color,
+
+        $UserID = (Get-Random -Minimum 10 -Maximum 100000)
+    )
+    
+    $MyNewUser = [Participant]::new($Name, $Age, $Color, $UserId)
+    $MyCsvUser = $MyNewUser.ToString() 
+    
+    $NewCSv = Get-Content $DatabaseFile -Raw
+    $NewCSv += $MyCsvUser
+
+    Set-Content -Value $NewCSv -Path $DatabaseFile
 }
-
-# Create a new course object
-$Course = New-Object Course
-
-# Create participants and set the name and age
-$First = New-Object Participant
-$First.Name = 'Person 1'
-$First.Age = 30
-
-$Second = New-Object Participant
-$Second.Name = 'Person 2'
-$Second.Age = 40
-
-# Add current date and participants to course
-$Course.Date = Get-Date
-$Course.Participants += $First
-$Course.Participants += $Second
-
-# Inspect the values of the course and participants
-Write-Output $Course
-Write-Output $Course.Participants
 ```
 
-*Tip:* Use the keyword `using` to import classes from a module, importing a module with a class using `Import-Module` will not import the class type.
+The resulting `MyFunctions.ps1` file can be found in this folder.
 
 ---
 
