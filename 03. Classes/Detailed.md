@@ -97,6 +97,8 @@ function Add-CourseUser {
 }
 ```
 
+---
+
 The resulting `MyFunctions.ps1` file can be found in this folder.
 
 ---
