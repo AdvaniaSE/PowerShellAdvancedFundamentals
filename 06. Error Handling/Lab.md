@@ -1,42 +1,27 @@
 # Lab 06. Error Handling
 
-- Generate an error by running a command that doesn't exist in PowerShell
+- Open the file in your repo named `MyFunctions.ps1` in VSCode.
+
+- In the function `Confirm-CourseID`, replace the output of the command with a non terminating error output
+
+- In the function `GetUserData`, Add a `Try` block around the `Get-Content` command, with a catch block to create a breaking error
+  - Change the value of `$MyUserListFile` to a non existing file and see that it handles the error
+  - Change the `$ErrorActionPreference`, and see if the behavior changes. Valid values are:
+    - SilentlyContinue
+    - Stop
+    - Continue
+    - Inquire
+    - Ignore
+    - Suspend
+    - Break
+  - Use the `Get-Error` CmdLet to explore the error message and find the type of the error.
+  - Change the catch block to be of the `ItemNotFoudException`, and add a specific 'DatabaseFile not found' message
+  - Add another general 'Unknown error' catch block and output the error message
+
+- Restore the path of the `$MyUserListFile` variable to `"$PSScriptRoot\MyLabFile.csv"`
 
 ---
 
-- Change the `$ErrorView` variable and note the difference between messages. Valid values for ErrorView are
-  - NormalView
-  - CategoryView
-  - ConciseView (This is the default view)
+The resulting `MyFunctions.ps1` file can be found in this folder.
 
 ---
-
-- Explore the error using `Get-Error`
-
----
-
-- Create a try/catch block to capture the error and instead of an error, return the string "I captured the error: \<ErrorMessage\>"
-
----
-
-- Using the information from `Get-Error`, specify the type of error in the catch block
-
----
-
-- Change the type of error generated in the try block and add another catch block to catch the error
-
----
-
-- Add a finally block outputting the string "Finally in the finally block." and verify that this block is run no matter which path the code takes
-
----
-
-- Change the `$ErrorActionPreference`, and see if the behavior changes. Valid values are:
-  - SilentlyContinue
-  - Stop
-  - Continue
-  - Inquire
-  - Ignore
-  - Suspend
-  - Break
-  
