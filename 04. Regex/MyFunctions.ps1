@@ -111,7 +111,7 @@ function Confirm-CourseID {
 
     foreach ($User in $AllUsers) {
         if ($User.Id -notmatch '^\d+$') {
-            Write-Error "User $($User.Name) has mismatching id: $($User.Id)"
+            Write-Output "User $($User.Name) has mismatching id: $($User.Id)"
         }
     }
 }

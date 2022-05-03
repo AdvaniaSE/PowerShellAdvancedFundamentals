@@ -12,7 +12,7 @@
 ```
 
 - Create a new function called `Confirm-CourseID` that reads the user database using the `GetUserData` function, and validates all ID's consists of numbers only.
-  - Make it output any users with erroneous ID to the error stream
+  - Make it output any users with erroneous ID.
 
 ```PowerShell
 function Confirm-CourseID {
@@ -22,7 +22,7 @@ function Confirm-CourseID {
 
     foreach ($User in $AllUsers) {
         if ($User.Id -notmatch '^\d+$') {
-            Write-Error "User $($User.Name) has mismatching id: $($User.Id)"
+            Write-Output "User $($User.Name) has mismatching id: $($User.Id)"
         }
     }
 }
