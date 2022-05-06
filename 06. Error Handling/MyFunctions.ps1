@@ -107,7 +107,7 @@ function Remove-CourseUser {
                 $_.Id -eq $RemoveUser.Id
             )
         }
-        Set-Content -Value $MyUserList -Path $MyUserListFile -WhatIf
+        Set-Content -Value $($MyUserList | ConvertTo-Csv -notypeInformation) -Path $MyUserListFile -WhatIf
     }
     else {
         Write-Output "Did not remove user $($RemoveUser.Name)"

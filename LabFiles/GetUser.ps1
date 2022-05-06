@@ -38,3 +38,12 @@ switch ($MyUserList) {
     { $_.Color -eq 'Blue' } { "$($_.Name) has a full tank of gas, half a pack of cigarettes, it's dark and he's wearing sunglasses." }
     default { Write-Output "$($_.Name) Needs to start a band"}
 }
+
+# Happy new year! Update everyones age by one
+$MyUserListFile = "$PSScriptRoot\MyLabFile.csv"
+$MyUserList = Get-Content -Path $MyUserListFile | ConvertFrom-Csv
+foreach ($User in $MyUserList) {
+    $User.age = $User.Age + 1
+    Write-Output "$($User.Name) is $($User.Age) this year."
+}
+Set-Content -Value $MyUserList -Path $MyUserListFile -WhatIf
