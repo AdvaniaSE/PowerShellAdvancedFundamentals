@@ -1,129 +1,88 @@
 # Lab 07. Detailed - Debugging
 
-## Debug in PowerShell
+In this folder we have added another function based on contents of the `GetUser.ps1`
 
-Test debugging using the provided script "DebuggingScript.ps1" in a PowerShell console.
-
-### Line
-
-- Set a breakpoint on line 18
-- Run the script
-  - Examine the value of `$Result`
-  - Use `v` or `stepOver` to run only the next command
-  - Examine the value of `$Result` again
-  - Use `c` or `continue` to let the script finish
-- Remove the breakpoint
-
-```PowerShell
-# Set the breakpoint
-Set-PSBreakpoint -Script '.\07. Debugging\DebuggingScript.ps1' -Line 18
-
-# Execute the script
-& '.\07. Debugging\DebuggingScript.ps1'
-
-# Remove all breakpoints
-Get-PSBreakpoint | Remove-PSBreakpoint
-```
-
-### Command
-
-- Set a breakpoint on the command `Write-Output`
-- Run the script
-  - Use `l` or `list` to Verify that the script went into debug mode when calling `Write-Output`
-  - Use `c` or `continue` to let the script finish
-- Remove the breakpoint
-
-```PowerShell
-# Set the breakpoint
-Set-PSBreakpoint -Script '.\07. Debugging\DebuggingScript.ps1' -Command 'Write-Output'
-
-# Execute the script
-& '.\07. Debugging\DebuggingScript.ps1'
-
-# Remove all breakpoints
-Get-PSBreakpoint | Remove-PSBreakpoint
-```
-
-### Variable
-
-- Set a breakpoint on the variable `$Result`
-- Run the script
-  - Verify that the script went into debug mode when referencing `$Result`
-  - Use `c` or `continue` to let the script finish
-- Remove the breakpoint
-
-```PowerShell
-# Set the breakpoint
-Set-PSBreakpoint -Script '.\07. Debugging\DebuggingScript.ps1' -Variable 'Result'
-
-# Execute the script
-& '.\07. Debugging\DebuggingScript.ps1'
-
-# Remove all breakpoints
-Get-PSBreakpoint | Remove-PSBreakpoint
-```
-
-*Tip:* There is a `Mode` parameter that lets you choose if the breakpoint should trigger when the variable is read, written to, or both.
-
-### *Optional:* Action
-
-- Set a new breakpoint with a condition to break using the `Action` parameter, base the condition on how many files were found in 'C:\Temp'
-- Run the script
-- Remove the breakpoint
-
-```PowerShell
-# Set the breakpoint
-Set-PSBreakpoint -Script '.\07. Debugging\DebuggingScript.ps1' -Line 21 -Action {
-    # Action lets you set conditions for breaking
-    # In this case if there are at least 3 files found when the script hits line 21
-    if ($Result.Count -ge 3) {
-        break
-    }
-}
-
-# Execute the script
-& '.\07. Debugging\DebuggingScript.ps1'
-
-# Remove all breakpoints
-Get-PSBreakpoint | Remove-PSBreakpoint
-```
+Use the `UpdateYear.ps1` file to try out different ways of debugging.
 
 ---
 
-## Debug in VS Code
+- Debug in the shell
+  - Line
+    - Set a breakpoint on line `16`of the `UpdateYear.ps1` script and run it.
 
-Test debugging using the provided script "DebuggingScript.ps1" in VS Code.
+    ```PowerShell
+    Set-PSBreakpoint -Script .\UpdateYear.ps1 -Line 16
+    ```
+  
+    - Verify you are in a debug session by checking the prompt message. Debug sessions always contain the text `[DBG]`
+    - Find all available commands by typing `?` in the console.
 
-### Breakpoint
+    ```PowerShell
+    s, stepInto         Single step (step into functions, scripts, etc.)
+    v, stepOver         Step to next statement (step over functions, scripts, etc.)
+    o, stepOut          Step out of the current function, script, etc.
 
-- Set a breakpoint on line 18 by clicking to the left of the line, placing a red dot
-- Run the script
-  - Add `$Result[0]` as an expression in the watch window, it should be null
-  - Verify that the value of `$Result` is not showing up when hovering the mouse over it
-  - Use the GUI buttons to step over the command
-  - Examine the value of `$Result` by hovering the mouse over the value again
-  - Click the continue button
-- Remove the breakpoint
+    c, continue         Continue operation
+    q, quit             Stop operation and exit the debugger
+    d, detach           Continue operation and detach the debugger.
 
-### Hit Count
+    k, Get-PSCallStack Display call stack
 
-- Set a breakpoint on line 21 and add a hit count condition of 2 to the breakpoint
-  - Place a breakpoint on line 21, right click it and choose "Edit Breakpoint..."
-  - Choose "Hit Count" and enter the number 2
-- Run the script
-  - Verify that the current file in the iteration is not the first file in `$Result` by hovering the mouse over or looking at the Variables window in VS Code
-  - Click the continue button
-- Remove the breakpoint
+    l, list             List source code for the current script.
+                        Use "list" to start from the current line, "list <m>"
+                        to start from line <m>, and "list <m> <n>" to list <n>
+                        lines starting from line <m>
 
-### *Optional:* Expression
+    <enter>             Repeat last command if it was stepInto, stepOver or list
 
-- Set a new breakpoint on line 21 and add a condition to break based on a specific file name amongst the files found
-  - Find out the name of a file in the list found by the script
-  - Place a breakpoint on line 21, right click it and choose "Edit Breakpoint..."
-  - Choose "Expression" and write `$File -like '*<TheNameOfTheFile>*'`
-- Run the script
-  - Verify that `$File` contains the file specified
-- Remove the breakpoint
+    ?, h                displays this help message.
+    ```
+
+    - Test the behaviour and output of the `Step Into`, `Step Over`, and `Step Out` functions
+    - Verify the value of the `$User` Variable and see that it updates
+
+    ```PowerShell
+    # Debug mode is still normal powershell. Outputing a variable is done by typing it
+    $User
+    ```
+  
+    - Type `c` to continue running the script, hitting the breakpoint again, or `q` to break the script right away.
+    - Remove the breakpoint
+
+    ```PowerShell
+    Get-PSBreakpoint | Remove-PSBreakpoint
+    ```
+
+  - Command
+    - Create a breakpoint the triggers on the `Set-Content` command _and_ When hitting the breakpoint outputs the $MyUserList variable in csv format
+
+    ```PowerShell
+    Set-PSBreakpoint -Command Set-Content -Action {Write-host $($MyUserList | ConvertTo-CSV)}
+    ```
+  
+    - Verify the output, and remove the breakpoint
+
+    ```PowerShell
+    Get-PSBreakpoint | Remove-PSBreakpoint
+    ```
+  
+  - Variable
+    - Set a breakpoint on the `User` variable, triggered only when written
+
+    ```PowerShell
+    Set-PSBreakpoint -Variable 'User' -Script .\UpdateYear.ps1 -Mode Write
+    ```
+  
+    - Verify the breakpoint only gets hit once for every user in the user list.
+
+    - Remove the breakpoint, and set a new one triggered upon both read and write operations
+
+    ```PowerShell
+    Get-PSBreakpoint | Remove-PSBreakpoint
+    Set-PSBreakpoint -Variable 'User' -Script .\UpdateYear.ps1 -Mode ReadWrite
+    ```
+
+    - Verify the breakpoint is now hit a number of times for each iteration
 
 ---
 
