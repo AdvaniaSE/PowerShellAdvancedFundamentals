@@ -195,6 +195,13 @@ Get-Help Get-CourseUser
   #>
   ```
 
+- Import the module again and verify the help documentation is updated
+
+```PowerShell
+Import-Module .\MyModule\MyModule\
+Get-Help Get-CourseUser
+```
+
 ---
 
 ## Extra lab - Documentation
