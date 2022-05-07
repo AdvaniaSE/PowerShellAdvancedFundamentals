@@ -1,87 +1,294 @@
 # Lab 08. Detailed - Building Modules
+# Lab 08. Building Modules
 
-## PSAddOne.psm1
+In the folder `MyModule` we have set up a standard folder structure of a module.
 
-Create a module called PSAddOne with two functions.
+- Split the _functions_ of the `MyFunctions.ps1` file in to one file per function, named the same as the function, and store them in the following folders:
+  - Public:
+    - Get-CourseUser
+    - Add-CourseUser
+    - Remove-CourseUser
+    - Confirm-CourseID
+  - Private:
+    - GetUserData
+- Copy both the _Classes_ and _enums_ of the `MyFunctions.ps1` file in to one file named `Classes.ps1` in to the `Classes` folder
 
-- First create a new file called PSAddOne.psm1
+- Copy the `MyLabFile.csv` in to the `MyModule\MyModule\` folder
+  - Update the `GetUserData`, `Add-CourseUser`, and `Remove-CourseUser` functions to point to the new `MyLabFile.csv` data file.
 
-### Add-OneToValue
+  ```PowerShell
+  "$PSScriptRoot\..\MyLabFile.csv"
+  ```
 
-`"Add-OneToValue"` is a normal "helper" function that takes `Number` as a parameter, adds 1 to it and outputs the new number
+---
 
+- Create a `.psm1` module file in the `MyModule\MyModule` folder
+  - Make sure the module:
+    - Imports all functions from the `Classes` folder
+    - Imports all functions from the `Private` folder
+    - Imports all functions from the `Public` folder
+
+  ```PowerShell
+  # Add this to your psm1 file.
+
+  # import classes
+  foreach ($file in (Get-ChildItem "$PSScriptRoot\Classes\*.ps1"))
+  {
+    try {
+      Write-Verbose "Importing $($file.FullName)"
+      . $file.FullName
+    }
+    catch {
+      Write-Error "Failed to import '$($file.FullName)'. $_"
+    }
+  }
+
+  # import private functions
+  foreach ($file in (Get-ChildItem "$PSScriptRoot\Private\*.ps1"))
+  {
+    try {
+      Write-Verbose "Importing $($file.FullName)"
+      . $file.FullName
+    }
+    catch {
+      Write-Error "Failed to import '$($file.FullName)'. $_"
+    }
+  }
+
+  # import public functions
+  foreach ($file in (Get-ChildItem "$PSScriptRoot\Public\*.ps1"))
+  {
+    try {
+      Write-Verbose "Importing $($file.FullName)"
+      . $file.FullName
+    }
+    catch {
+      Write-Error "Failed to import '$($file.FullName)'. $_"
+    }
+  }
+  ```
+
+- Import the module, and check its details using `Get-Module`
+  
 ```PowerShell
-function Add-OneToValue {
-    param(
-        [int]$Number
-    )
-
-    Write-Output ($Number + 1)
-}
+Import-Module .\MyModule\MyModule\MyModule.psm1
+Get-Module MyModule | Format-List
 ```
 
-### Add-OneToString
-
-`"Add-OneToString"` is an advanced function that takes a string as input and validates that it matches "ccccn" where c is a letter and n is a number. The function should split the string to get the number, add to it using the function `"Add-OneToValue"` and output the string with the new number instead.
-
-Examples:
-
-- `Add-OneToString -String 'abcd6'` would output `'abcd7'`
-- `Add-OneToString -String 'cool9'` would output `'cool10'`
+- Check which commands you get from the module
 
 ```PowerShell
-function Add-OneToString {
-    [CmdletBinding()]
-    param(
-        # ^       Start of line
-        # [       Start match character in group
-        #   a-z   Any lowercase character in the english alphabet
-        #   A-Z   Any uppercase character in the english alphabet
-        # ]       End match character in group
-        # {4}     Quantifier, exactly 4 of the previous character group
-        # \d      Any decimal digit
-        # $       End of line
-        [ValidatePattern('^[a-zA-Z]{4}\d$')]
-        [string]$String
-    )
+Get-Command -Module MyModule
+```
 
-    [int]$Number = $String.Substring(4)
-
-    $Number = Add-OneToValue -Number $Number
-
-    Write-Output ($String -replace '\d',$Number)
-}
+- Remove the module from the active session
+  
+```PowerShell
+Remove-Module MyModule
 ```
 
 ---
 
-## Plaster
+- Create a module manifest for the module.
 
-- Make sure the following modules are installed on your computer
-  - [Plaster](https://github.com/PowerShell/Plaster)
-  - [InvokeBuild](https://github.com/nightroman/Invoke-Build)
-  - [PowerShellGet](https://docs.microsoft.com/en-us/powershell/module/powershellget)
-  - [ModuleBuilder](https://github.com/PoshCode/ModuleBuilder)
-  - [Pester](https://github.com/pester/Pester)
-- Download the [gyPSum](https://github.com/SimonWahlin/gyPSum) template
-- Run the following command, specifying the directory of the gyPSum template
-  - `Invoke-Plaster -TemplatePath .\gyPSum\Module -DestinationPath .`
-- Create module `PSAddOne`
+  ```PowerShell
+  New-ModuleManifest -Path .\MyModule\MyModule\MyModule.psd1
+  ```
 
-### Private Function
+  - Verify you can import the module, and check its details using `Get-Module`
 
-In the "Private" folder, create the script "Add-OneToValue.ps1" and copy or move the function called `Add-OneToValue` there.
+  ```PowerShell
+  Import-Module .\MyModule\MyModule\
+  Get-Module MyModule | Format-List
+  ```
 
-### Public Function
+  - Check which commands you get from the module
 
-In the "Public" folder, create a script called "Add-OneToString.ps1" and copy or move the function called `Add-OneToString` there.
+  ```PowerShell
+  Get-Command -Module MyModule
+  # By default a manifest does not export any functions
+  ```
 
-### Validation
+  - Remove the module from the active session
 
-1. Build the module using `Invoke-Build` in the root directory of the generated module folder.
-2. Run `Import-Module .\bin\PSAddOne`
-3. Run `Get-Command -Module PSAddOne`. Verify that only `Add-OneToString` shows as the result.
-4. Run the command `Add-OneToString` and verify that the output works as expected.
+  ```PowerShell
+  Remove-Module MyModule
+  ```
+
+  - Edit the manifest to
+    - Export the functions in the `Public` folder
+
+    ```PowerShell
+    # First we need to make sure our manifest points to our module file
+    RootModule = 'MyModule.psm1'
+
+    # Later in the manifest file we add the exported commands
+    FunctionsToExport = @(
+        'Add-CourseUser',
+        'Confirm-CourseID',
+        'Get-CourseUser',
+        'Remove-CourseUser'
+    )
+    ```
+  
+    - Have a better module version
+
+    ```PowerShell
+    ModuleVersion = '1.0.0'
+    ```
+
+    - Set the correct copyright data
+
+    ```PowerShell
+    # Author of this module
+    Author = 'Björn Sundling'
+
+    # Company or vendor of this module
+    CompanyName = 'Advania'
+
+    # Copyright statement for this module
+    Copyright = '(c) Björn Sundling. All rights reserved.'
+    ```
+  
+  - Import the module again, and verify:
+    - The new module settings
+
+    ```PowerShell
+    Import-Module .\MyModule\MyModule\
+    Get-Module MyModule | Format-List
+    ```
+
+    - That you only get the commands you want to export
+
+    ```PowerShell
+    Get-Command -Module MyModule
+    ```
+
+---
+
+- Import the module and read the help documentation for the `Get-CourseUser` function
+
+```PowerShell
+Import-Module .\MyModule\MyModule\
+Get-Help Get-CourseUser
+```
+
+- Add comment based help to the `Get-CourseUser` command
+  - Open the file `Get-CourseUser.ps1` in vscode
+  - On the first line of the file, press `Ctrl+Space` to trigger the intellisense menu
+  - select `Comment-help` to get the default help text
+  - Fill in some data in the different sections
+
+  ```PowerShell
+  <#
+  .SYNOPSIS
+      This function gets a course user
+  .DESCRIPTION
+      This function gets a course user. It can filter on name or how old the user is.
+  .NOTES
+      We require a specific datastructure foun in our user database for this to work.
+  .LINK
+      www.our-intranet.com
+  .EXAMPLE
+      > Get-CourseUser -Name 'Björn'
+      This command will return all users matching the name 'Björn'
+  #>
+  ```
+
+---
+
+## Extra lab - Documentation
+
+- Use the `PlatyPS` module to export and create markdown based help in the `MyModule\Documentation` folder
+
+```PowerShell
+New-MarkdownHelp -Module MyModule -OutputFolder .\MyModule\Documentation\
+```
+
+## Extra lab - Build Script
+
+- Use the `InvokeBuild` module to create a build script that:
+  - Compiles the module in to one psm1/psd1 file
+  - Compiles the markdown help documentation and includes it
+  - Outputs the resulting module to a bin folder
+    - If there already is a bin folder, remove it.
+
+```PowerShell
+# One example of a build script.
+#Requires -Modules 'InvokeBuild', 'PlatyPS'
+
+[string]$ModuleName = 'MyModule'
+[string]$ModuleSourcePath = "$PSScriptRoot\MyModule"
+[string]$HelpSourcePath = "$PSScriptRoot\Documentation"
+
+[string]$Version = '1.0.0'
+
+[string]$OutputPath = "$PSScriptRoot\Bin\$ModuleName\$Version"
+
+task Clean {
+    If (Test-Path -Path $OutputPath) {
+        "Removing existing files and folders in $OutputPath"
+        Get-ChildItem $OutputPath | Remove-Item -Force -Recurse
+    }
+    Else {
+        "$OutputPath is not present, nothing to clean up."
+        $Null = New-Item -ItemType Directory -Path $OutputPath
+    }
+}
+
+Task Build_Documentation {
+    New-ExternalHelp -Path $HelpSourcePath -OutputPath "$OutputPath\en-US"
+}
+
+task Compile_Module {
+    $PSM1Name = "$ModuleName.psm1"
+    New-Item -Name $PSM1Name -Path $OutputPath -ItemType File -Force 
+    $PSM1Path = (Join-Path -Path $OutputPath -ChildPath $PSM1Name)
+    
+    $PSD1Name = "$ModuleName.psd1"
+    New-Item -Name $PSD1Name -Path $OutputPath -ItemType File -Force 
+    $PSD1Path = (Join-Path -Path $OutputPath -ChildPath $PSD1Name)
+
+    $ExportedFunctionList = [System.Collections.Generic.List[string]]::new()
+
+    # Classes
+    Get-ChildItem "$ModuleSourcePath\Classes" *.ps1 | ForEach-Object {
+        $FileContent = Get-Content $_.FullName
+        "#region $($_.BaseName)`n"      | Out-File $PSM1Path -Append
+        $FileContent                    | Out-File $PSM1Path -Append
+        "#endregion $($_.BaseName)`n"   | Out-File $PSM1Path -Append
+    }
+
+    # Private functions
+    Get-ChildItem "$ModuleSourcePath\Private" *.ps1 | ForEach-Object {
+        $FileContent = Get-Content $_.FullName
+        "#region $($_.BaseName)`n"      | Out-File $PSM1Path -Append
+        $FileContent                    | Out-File $PSM1Path -Append
+        "#endregion $($_.BaseName)`n"   | Out-File $PSM1Path -Append
+    }
+
+    # Public functions
+    Get-ChildItem "$ModuleSourcePath\Public" *.ps1 | ForEach-Object {
+        $ExportedFunctionList.Add($_.BaseName)
+
+        $FileContent = Get-Content $_.FullName
+        "#region $($_.BaseName)`n" | Out-File $PSM1Path -Append
+        $FileContent | Out-File $PSM1Path -Append
+        "#endregion $($_.BaseName)`n" | Out-File $PSM1Path -Append
+    }
+
+    # Manifest
+    $ManifestContent = (Get-Content "$ModuleSourcePath\$ModuleName.psd1" ) -replace 'ModuleVersion\s*=\s*[''"][0-9\.]{1,10}[''"]',"Moduleversion = '$Version'" -replace 'FunctionsToExport\s*=\s*[''"]\*[''"]',"FunctionsToExport = @('$($ExportedFunctionList -join "','")')"
+    $ManifestContent | Out-File $PSD1Path 
+}
+
+Get-Module -Name $ModuleName | Remove-Module -Force
+# Default task :
+task . Clean,
+    Build_Documentation,
+    Compile_Module
+
+```
 
 ---
 
@@ -91,4 +298,5 @@ In the "Public" folder, create a script called "Add-OneToString.ps1" and copy or
 Get-Help about_Modules
 ```
 
-- [Plaster](https://github.com/PowerShell/Plaster)
+- [PlatyPS](https://github.com/PowerShell/platyPS)
+- [InvokeBuild](https://github.com/nightroman/Invoke-Build)
