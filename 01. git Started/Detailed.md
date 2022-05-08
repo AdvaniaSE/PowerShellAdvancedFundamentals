@@ -1,125 +1,91 @@
 # Lab 01. Detailed - git Started
 
-- Install [git](https://git-scm.com/downloads)
-  - Set default editor to VS Code
-  - git from Command Line and 3rd-party software
-  - Choose native Windows Secure Channel Library
+---
+
+- Fork the course repository on GitHub
+  - Clone the forked repository to your computer
+
+> - Use any browser and go to [AdvaniaSE on GitHub (https://github.com/AdvaniaSE/PowerShellAdvancedFundamentals)](https://github.com/AdvaniaSE/PowerShellAdvancedFundamentals)
+>
+> - Fork the course solution repository on GitHub by clicking the "fork" button in the top right.
+>
+>![fork](../Images/fork.png)
+>
+> - Verify you are now located in your own repository fork
+>
+>![forked repo](../Images/forkedRepo.png)
+>
+> - Click the "Code" button and select the "copy" icon to copy the clone URL to your reposiory
+>
+> ![clone from GitHub](../Images/clone.png)
+>
+> - In powershell, run the followin git command. This will create a subfolder with the same name as the repository and clone the contents to it.
+>
+> ```PowerShell
+> git clone <your copied URL>
+> ```
 
 ---
 
-- Create a local git repository
+- Create a new repository on your GitHub account and clone this to your computer
+  - Copy the contents from the `LabFiles` folder in the course repository to your newly created repository
+  - Push the changes to the GitHub
 
-```PowerShell
-# Set location for a directory to work in
-Set-Location 'C:\Temp'
-
-# Start by creating a folder for Lab 01
-New-Item -Name 'Lab01' -ItemType Directory
-
-# Move to the newly created folder
-Set-Location '.\Lab01'
-
-# Initialize a new git repository
-git init
-```
-
-- Create a text file \<YourName\>.txt
-
-```PowerShell
-$MyName = Read-Host 'What is your name?'
-New-Item -Name "$MyName.txt"
-```
-
-- Commit the text file to the git repository
-
-```PowerShell
-# First we need to stage the changes in our repository for our next commit
-git add --all
-```
-
-*Tip:* You can also use `git add .` to add all content in a directory recursively. In this case `git add <YourName>.txt` would have worked to add the single file.
-
-*Tip:* You can create a file called `.gitignore` to exclude certain files or directories from being included in your repository.
-
-```PowerShell
-# Before running the commit, you may need to configure git with a username and email so changes can be tracked to a user.
-git config --global user.name "MyUsername"
-git config --global user.email "My.EmailAddress@domain.com"
-```
-
-```PowerShell
-# Then commit the changes with a message indicating why the change was made
-git commit -m 'Added new file for lab 01'
-```
-
-- Add some text to the text file
-
-```PowerShell
-Set-Content -Value 'My file content' -Path "$MyName.txt"
-```
-
-- Commit the new changes
-
-```PowerShell
-# Once again we need to stage our changes before committing them
-git add --all
-
-git commit -m 'Added text to file in lab 01'
-```
+> - Use any browser and go to the repositories tab of your github page, https://github.com/YourGithubPage?tab=repositories
+>
+>On the right hand side of the page, click the "new" button
+>
+>![New repository](../Images/newRepo.png)
+>
+> - Give the repository a meaningfull name, and click create.
+>
+> - Clone this repo in the same way you cloned your "PowerShellAdvancedFundamentals" fork.
+>
+> - Copy the contents from the "PowerShellAdvancedFundamentals\LabFiles" folder to your cloned repo
+>
+> ```PowerShell
+> Copy-Item -Path .\PowerShellAdvancedFundamentals\LabFiles -Destination $yourNewRepoFolder
+> ```
+>
+> - Add the files as "staged" in Git, commit them, and push to the GitHub remote
+>
+> ```PowerShell
+> Set-Location $yourNewRepoFolder
+> git add .
+> git commit -m 'Initial creation of my files'
+> git push
+> ```
 
 ---
 
-- Create a GitHub account if you don't have one
-
-Go to [GitHub](https://github.com/) and sign up for a free account
-
-- Fork the course solution repository on GitHub
-
-  - Go to the specified course solution repository. If you're unsure which repository this is, please ask the course leader(s)
-  - Click the ![fork](../Images/fork.png) button
-
-- Clone the forked repository to your computer
-  - Click the Code button and copy the link
-
-![clone](../Images/clone.png)
+- Add a new file to your local repo on your computer named "Readme.md"
+  - Open the "Readme.md" file in VSCode and add a short description of your project
+  - Add the file to git, and push it to the remote GitHub repository
 
 ```PowerShell
-Set-Location 'C:\Temp'
+Set-Location $yourNewRepoFolder
+New-Item -name 'readme.md'
 
-git clone <your link>
-```
+# You can of course add text using powershell directly as well.
 
-- Add the text file with your name to the folder "Lab 01"
+$MyReadme = @'
+# This is my lab repo.
 
-```PowerShell
-# Change path to where you created your text file
-Copy-Item -Path "C:\Temp\Lab01\$MyName.txt" -Destination '.\PSSolutions\Lab01'
-```
+I'm learning git!
+'@
+$MyReadme | Set-Content -Path .\readme.md
 
-- Commit the changes to the repository
+# note! since git is not a native powershell command we dont need to use the .\ path locator for a file in the same directory
+git add readme.md
 
-```PowerShell
-# First stage changes to the repository before committing
-git add --all
+git commit -m 'added a readme file'
 
-git commit -m 'Added text file to Lab01 solutions'
-```
-
-- Push the changes to the forked repository on GitHub
-
-```PowerShell
-# You may have to login to GitHub to validate your credentials upon pushing to your repository
 git push
 ```
 
-- Create a pull request to the course solution repository on GitHub
-  
-  - Go to the forked repository on Github, click ![pr](../Images/pr.png) and create the pull request to the course solution repository.
-
----
-
 ## *More Reading*
 
+- [Git cheat sheet by RebelLabs](../Images/GitCheatSheet.png)
 - [git-scm](https://git-scm.com/docs/gittutorial)
 - [.gitignore](https://git-scm.com/docs/gitignore)
 - posh-git - A Git plugin for the PowerShell prompt. `Find-Module Posh-Git | Install-Module`

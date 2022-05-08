@@ -1,24 +1,18 @@
 # Lab 01. git Started
 
-- Install [git](https://git-scm.com/downloads)
-  - Set default editor to VS Code
-  - git from Command Line and 3rd-party software
-  - Choose native Windows Secure Channel Library
+---
+
+- Fork the course repository on GitHub
+  - Clone the forked repository to your computer
 
 ---
 
-- Create a local git repository
-- Create a text file \<YourName\>.txt
-- Commit the text file to the git repository
-- Add some text to the text file
-- Commit the new changes
+- Create a new repository on your GitHub account and clone this to your computer
+  - Copy the contents from the `LabFiles` folder in the course repository to your newly created repository
+  - Push the changes to the GitHub
 
 ---
 
-- Create a GitHub account if you don't have one
-- Fork the course solution repository on GitHub
-- Clone the forked repository to your computer
-- Add the text file with your name to the folder "Lab 01"
-- Commit the changes to the repository
-- Push the changes to the fork on GitHub
-- Create a pull request to the course solution repository on GitHub
+- Add a new file to your local repo on your computer named "Readme.md"
+  - Open the "Readme.md" file in VSCode and add a short description of your project
+  - Add the file to git, and push it to the remote GitHub repository

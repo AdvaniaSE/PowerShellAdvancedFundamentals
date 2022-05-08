@@ -1,48 +1,65 @@
 # Lab 08. Building Modules
 
-## PSAddOne.psm1
+In the folder `MyModule` we have set up a standard folder structure of a module.
 
-Create a module called PSAddOne with two functions.
+- Split the _functions_ of the `MyFunctions.ps1` file in to one file per function, named the same as the function, and store them in the following folders:
+  - Public:
+    - Get-CourseUser
+    - Add-CourseUser
+    - Remove-CourseUser
+    - Confirm-CourseID
+  - Private:
+    - GetUserData
+- Copy both the _Classes_ and _enums_ of the `MyFunctions.ps1` file in to one file named `Classes.ps1` in to the `Classes` folder
 
-### Add-OneToValue
-
-`"Add-OneToValue"` is a normal "helper" function that takes `Number` as a parameter, adds 1 to it and outputs the new number.
-
-### Add-OneToString
-
-`"Add-OneToString"` is an advanced function that takes a string as input and validates that it matches "ccccn" where c is a letter and n is a number. The function should split the string to get the number, add to it using the function `"Add-OneToValue"` and output the string with the new number instead.
-
-Examples:
-
-`Add-OneToString -String 'abcd6'` would output `'abcd7'`.
-`Add-OneToString -String 'abcd9'` would output `'abcd10'`.
+- Copy the `MyLabFile.csv` in to the `MyModule\MyModule\` folder
+  - Update the `GetUserData`, `Add-CourseUser`, and `Remove-CourseUser` functions to point to the new `MyLabFile.csv` data file.
 
 ---
 
-## Plaster
+- Create a `.psm1` module file in the `MyModule\MyModule` folder
+  - Make sure the module:
+    - Imports all functions from the `Classes` folder
+    - Imports all functions from the `Private` folder
+    - Imports all functions from the `Public` folder
+  - Import the module, and check its details using `Get-Module`
+  - Check which commands you get from the module
+  - Remove the module from the active session
 
-- Make sure the following modules are installed on your computer
-  - [Plaster](https://github.com/PowerShell/Plaster)
-  - [InvokeBuild](https://github.com/nightroman/Invoke-Build)
-  - [PowerShellGet](https://docs.microsoft.com/en-us/powershell/module/powershellget)
-  - [ModuleBuilder](https://github.com/PoshCode/ModuleBuilder)
-  - [Pester](https://github.com/pester/Pester)
-- Download the [gyPSum](https://github.com/SimonWahlin/gyPSum) template
-- Run the following command, specifying the directory of the gyPSum template
-  - `Invoke-Plaster -TemplatePath .\gyPSum\Module -DestinationPath .`
-- Create module `PSAddOne`
+---
 
-### Private Function
+- Create a module manifest for the module.
+  - Verify you can import the module, and check its details using `Get-Module`
+  - Check which commands you get from the module
+  - Remove the module from the active session
+  - Edit the manifest to
+    - Export the functions in the `Public` folder
+    - Have a better module version
+    - Set the correct copyright data
+  - Import the module again, and verify:
+    - The new module settings
+    - That you only get the commands you want to export
 
-In the "Private" folder, create the script "Add-OneToValue.ps1" and copy or move the function called `Add-OneToValue` there.
+---
 
-### Public Function
+- Import the module and read the help documentation for the `Get-CourseUser` function
+- Add comment based help to the `Get-CourseUser` command
+  - Open the file `Get-CourseUser.ps1` in vscode
+  - On the first line of the file, press `Ctrl+Space` to trigger the intellisense menu
+  - select `Comment-help` to get the default help text
+  - Fill in some data in the different sections
+- Import the module again and verify the help documentation is updated
 
-In the "Public" folder, create a script called "Add-OneToString.ps1" and copy or move the function called `Add-OneToString` there.
+---
 
-### Validation
+## Extra lab - Documentation
 
-1. Build the module using `Invoke-Build` in the root directory of the generated module folder.
-2. Run `Import-Module .\bin\PSAddOne`
-3. Run `Get-Command -Module PSAddOne`. Verify that only `Add-OneToString` shows as the result.
-4. Run the command `Add-OneToString` and verify that the output works as expected.
+- Use the `PlatyPS` module to export and create markdown based help in the `MyModule\Documentation` folder
+
+## Extra lab - Build Script
+
+- Use the `InvokeBuild` module to create a build script that:
+  - Compiles the module in to one psm1/psd1 file
+  - Compiles the markdown help documentation and includes it
+  - Outputs the resulting module to a bin folder
+    - If there already is a bin folder, remove it.
