@@ -1,27 +1,16 @@
 # Lab 09. Pester
 
-## Write Pester Tests for the Module PSAddOne
+- Add a `Tests` folder to the root of your module, and in it, create a file called `MyModule.Tests.ps1` where you create the tests in this lab.
 
-Create unit tests for `Add-OneToValue` and `Add-OneToString`.
+- In the `MyModule` module the `Add-CourseUser` currently does not accept some characters and diacritics in names. Write a test for each of the following names:
+  - 'Jason Derülo'
+  - 'Björn Skifs'
+  - 'Will.i.am'
+  - 'Sinéad O´Connor'
+- Make sure when running the test you don't actually update the database by mocking the `Set-Content` CmdLet. Create a mock that outputs `works!` instead.
+- *Optional:* Rewrite the test to use testcases instead of unique tests.
 
-### `Add-OneToValue`
-
-- `Add-OneToValue 10` should output `11`
-- `Add-OneToValue -5` should output `-4`
-
-### `Add-OneToString`
-
-- `Add-OneToString "test1"` should output `"test2"`
-- `Add-OneToString ""` should throw
-
-## Run Tests
-
-1. Test the functions using `Invoke-Pester` with the functions loaded.
-2. Add the tests to `PSAddOne/Test/Unit/PSAddOne.Tests.ps1` and re-build the module from the previous lab using Plaster and `Invoke-Build`.
-
-There is a bug in the code for Add-OneToString where the Regex prevents us from using negative numbers. use Test driven development to solve this bug.
-
-- Write a test to verify this bug
-- Run pester to make shure it shows test error
-- Rewrite the function to allow input of negative numbers between -1 and -9
-- Run pester again to verify the bug has been fixed
+- In the `MyModule` module, in the `Get-CourseUser`, you can set both the `Name` and the `OlderThan` parameter at the same time. Write a pester test that verifies `Get-CourseUser` throws an error if both parameters are set.
+  - *Optional:* Write a pester test that verifies `Get-CourseUser` does not throw an error if only the `Name` parameter is set.
+  - *Optional:* Write a pester test that verifies `Get-CourseUser` does not throw an error if only the `OlderThan` parameter is set.
+- Use `ParameterSet` to fix the problem in the module.
