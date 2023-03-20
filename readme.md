@@ -23,5 +23,3 @@ The course for anyone with a fair bit of PowerShell scripting experience that wa
 - [Advania.se](https://www.advania.se/en/our-business/it-infrastructure/knowledge-factory/)
 - [Advania - Knowledge Factory @ Facebook](https://www.facebook.com/KnowledgeFactory/)
 - [Advania - Knowledge Factory @ Twitter](https://twitter.com/kfconsulting)
-
-![logo](https://www.advania.se/library/Template/logo_o.png)
