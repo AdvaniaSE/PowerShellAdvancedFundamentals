@@ -1,5 +1,7 @@
 Björns kopia
 
+Jag gör en uppdatering!
+
 # ![logo](./Images/pwrops.png) PowerShell Advanced Fundamentals
 
 PowerShell Advanced Fundamentals är kursen för den med erfarenhet av PowerShell som vill lära sig mer om hur man skriver återanvändbara och robusta verktyg och scripts i PowerShell. Med högt tempo går vi igenom olika områden, bland annat vilka verktyg man kan nyttja för att skriva PowerShell, hur man jobbar med felhantering, hur man kan testa koden man skriver och hur man ser till att man får den input man väntar sig.
