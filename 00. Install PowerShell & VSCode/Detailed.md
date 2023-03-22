@@ -15,6 +15,14 @@
 
 ---
 
+If you are running windows you can use the following command to install all software using winget
+
+```PowerShell
+'Microsoft.PowerShell','git.git','Microsoft.VisualStudioCode','Microsoft.WindowsTerminal' | Foreach-Object { winget install $_ }
+```
+
+---
+
 ## *More Reading*
 
 - [PowerShell Overview](https://docs.microsoft.com/en-us/powershell/scripting/overview)
