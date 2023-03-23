@@ -88,7 +88,7 @@ function Remove-CourseUser {
     $MyUserList = Get-Content -Path $DatabaseFile | ConvertFrom-Csv
     $RemoveUser = $MyUserList | Out-GridView -PassThru
         
-    if ($PSCmdlet.ShouldProcess($DatabaseFile)) {
+    if ($PSCmdlet.ShouldProcess([string]$RemoveUser.Name)) {
         $MyUserList = $MyUserList | Where-Object {
             -not (
                 $_.Name -eq $RemoveUser.Name -and
