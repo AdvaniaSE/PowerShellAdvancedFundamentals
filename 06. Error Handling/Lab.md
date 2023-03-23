@@ -15,7 +15,7 @@
     - Suspend
     - Break
   - Use the `Get-Error` CmdLet to explore the error message and find the type of the error.
-  - Change the catch block to be of the `ItemNotFoudException`, and add a specific 'DatabaseFile not found' message
+  - Change the catch block to be of the `ItemNotFoundException`, and add a specific 'DatabaseFile not found' message
   - Add another general 'Unknown error' catch block and output the error message
 
 - Restore the path of the `$MyUserListFile` variable to `"$PSScriptRoot\MyLabFile.csv"`
