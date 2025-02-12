@@ -26,3 +26,9 @@
   - Using `SupportsShouldProcess` and `ConfirmImpact` Asks the user for confirmation, and based on the answer
     - Deletes the user
     - Outputs "Did not remove user $($RemoveUser.Name)"
+
+# Expected outcome
+
+After this lab you should have a file named `MyFunctions.ps1` and one file named `MyLabFile.csv` in your GitHub repo. The ps1 file should contain the functions from the lab.
+
+An example of the outcome may be found in the file `MyFunctions.ps1` in this folder.
