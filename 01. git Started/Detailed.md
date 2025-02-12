@@ -15,11 +15,11 @@
 >
 >![forked repo](../Images/forkedRepo.png)
 >
-> - Click the "Code" button and select the "copy" icon to copy the clone URL to your reposiory
+> - Click the "Code" button and select the "copy" icon to copy the clone URL to your repository
 >
 > ![clone from GitHub](../Images/clone.png)
 >
-> - In powershell, run the followin git command. This will create a subfolder with the same name as the repository and clone the contents to it.
+> - In PowerShell, run the following git command. This will create a subfolder with the same name as the repository and clone the contents to it.
 >
 > ```PowerShell
 > git clone <your copied URL>
