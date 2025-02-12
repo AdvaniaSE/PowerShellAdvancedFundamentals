@@ -6,6 +6,7 @@
   - Name starts with a capital letter A to Z
   - Name consists of only word characters, hyphens, and spaces
     - [Read why this is a generally bad, yet very common practice](https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/)
+  - Has a good error message for erroneous input.
 
 ```PowerShell
 [ValidatePattern({'^[A-Z][\w\-\s]*$'}, ErrorMessage = 'Name is in an incorrect format')]
