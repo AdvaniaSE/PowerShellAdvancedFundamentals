@@ -4,7 +4,7 @@ $MyName = Read-Host -Prompt 'What is your name?'
 [int]$MyAge = Read-Host -Prompt 'What is your age?'
 
 $MyColorArray = 'red', 'green', 'blue', 'yellow'
-$MyColor = $MyColorArray | Out-GridView -PassThru -Title 'What is your favourite color?'
+$MyColor = $MyColorArray | Out-ConsoleGridView -OutputMode Single -Title 'What is your favourite color?'
 
 $MyUserId = Get-Random -Minimum 10 -Maximum 100000
 

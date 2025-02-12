@@ -1,6 +1,7 @@
 # Lab 00. Install PowerShell & VSCode
 
 - Install [PowerShell 7](http://aka.ms/pwsh)
+  - Install the `Microsoft.PowerShell.ConsoleGuiTools` module by running the command `Install-Module Microsoft.PowerShell.ConsoleGuiTools`
 
 - Install [Visual Studio Code](http://aka.ms/vscode)
   - Install PowerShell Extension for VSCode

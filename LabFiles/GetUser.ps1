@@ -15,7 +15,7 @@ $MyUserList | Where-Object -Property Age -ge 65
 # Select user and remove
 $MyUserListFile = "$PSScriptRoot\MyLabFile.csv"
 $MyUserList = Get-Content -Path $MyUserListFile | ConvertFrom-Csv
-$RemoveUser = $MyUserList | Out-GridView -PassThru
+$RemoveUser = $MyUserList | Out-ConsoleGridView -OutputMode Single
 $MyUserList = $MyUserList | Where-Object {
     -not (
         $_.Name -eq $RemoveUser.Name -and
