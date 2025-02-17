@@ -3,6 +3,7 @@
 [string]$ModuleName = 'MyModule'
 [string]$ModuleSourcePath = "$PSScriptRoot\MyModule"
 [string]$HelpSourcePath = "$PSScriptRoot\Documentation"
+[string]$PesterPath = "$PSScriptRoot\Tests\"
 
 [string]$Version = '1.0.0'
 
@@ -21,6 +22,10 @@ task Clean {
 
 Task Build_Documentation {
     New-ExternalHelp -Path $HelpSourcePath -OutputPath "$OutputPath\en-US"
+}
+
+Task Run_PesterTests {
+    Invoke-Pester $PesterPath -Output Detailed
 }
 
 task Compile_Module {
@@ -68,5 +73,6 @@ task Compile_Module {
 Get-Module -Name $ModuleName | Remove-Module -Force
 # Default task :
 task . Clean,
+    Run_PesterTests,
     Build_Documentation,
     Compile_Module

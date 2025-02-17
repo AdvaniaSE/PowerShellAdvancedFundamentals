@@ -14,3 +14,13 @@
   - *Optional:* Write a pester test that verifies `Get-CourseUser` does not throw an error if only the `Name` parameter is set.
   - *Optional:* Write a pester test that verifies `Get-CourseUser` does not throw an error if only the `OlderThan` parameter is set.
 - Use `ParameterSet` to fix the problem in the module.
+
+- *Optional:* Add a task to the `ModuleName.Build.ps1` that automatically runs all tests on build.
+
+# Expected outcome
+ 
+After these labs you should have a file structure similar to the  on in the subfolder `.\MyModule`. Apart from the previous folders and files the structure should now also contain:
+
+- A folder named `Tests`
+- One or more test files named `<FunctionName>.Tests.ps1` and/or `<ModuleName>.Tests.ps1`
+- *Optional:* A task in the build script that runs your Pester tests.
