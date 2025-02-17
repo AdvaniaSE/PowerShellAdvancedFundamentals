@@ -13,4 +13,4 @@
 
 # Expected outcome
  
-An example of the outcome from these labs may be found in the file `MyFunctions.ps1` in this folder.
+An example of the outcome from these labs may be found in the file `MyFunctions.ps1` in this folder, in the `Add-CourseUser` and `Confirm-CourseID` functions.
