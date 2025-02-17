@@ -20,8 +20,6 @@
 
 - Restore the path of the `$MyUserListFile` variable to `"$PSScriptRoot\MyLabFile.csv"`
 
----
-
-The resulting `MyFunctions.ps1` file can be found in this folder.
-
----
+# Expected outcome
+ 
+An example of the outcome from these labs may be found in the file `MyFunctions.ps1` in this folder, in the `GetUserData` function.
