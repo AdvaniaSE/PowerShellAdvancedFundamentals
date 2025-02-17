@@ -63,3 +63,13 @@ In the folder `MyModule` we have set up a standard folder structure of a module.
   - Compiles the markdown help documentation and includes it
   - Outputs the resulting module to a bin folder
     - If there already is a bin folder, remove it.
+
+# Expected outcome
+ 
+After these labs you should have a file structure similar to the  on in the subfolder `.\MyModuleCompleted`. The structure should contain:
+
+- A module file - `<ModuleName>.psm1`
+- A module manifest -  `<ModuleName>.psd1`
+- A number of private and public PowerShell files `<FunctionName>.ps1`
+- One class file `Classes.ps1`
+- Additionally documentation files `<FunctionName>.md`, Build files `<ModuleName>.Build.ps1`
