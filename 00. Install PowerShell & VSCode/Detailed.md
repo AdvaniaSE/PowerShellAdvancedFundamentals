@@ -26,5 +26,4 @@ If you are running windows you can use the following command to install all soft
 ## *More Reading*
 
 - [PowerShell Overview](https://docs.microsoft.com/en-us/powershell/scripting/overview)
-- [Cascadia Code Font](https://github.com/microsoft/cascadia-code)
 - [VS Code Keybindings](https://code.visualstudio.com/docs/getstarted/keybindings#_default-keyboard-shortcuts)
