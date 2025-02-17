@@ -15,6 +15,7 @@
 
 - Add a new file to your local repo on your computer named "Readme.md"
   - Open the "Readme.md" file in VSCode and add a short description of your project
+    - Optional - use Markdown syntax. a short list of supported markdown formatting can be found [here](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
   - Add the file to git, and push it to the remote GitHub repository
 
 # Expected outcome
