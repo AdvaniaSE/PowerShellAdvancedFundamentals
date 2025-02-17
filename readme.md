@@ -4,7 +4,7 @@ PowerShell Advanced Fundamentals är kursen för den med erfarenhet av PowerShel
 
 ---
 
-The course for anyone with a fair bit of PowerShell scripting experience that want to learn the fundamentals of creating reusable and robust PowerShell tools. Full of high paced live demos and practice labs we'll be covering various topics usch as tools to use when writing PowerShell, how to work with error handling, how to test your code and how to validate your input.
+The course for anyone with a fair bit of PowerShell scripting experience that want to learn the fundamentals of creating reusable and robust PowerShell tools. Full of high paced live demos and practice labs we'll be covering various topics such as tools to use when writing PowerShell, how to work with error handling, how to test your code and how to validate your input.
 
 ---
 
