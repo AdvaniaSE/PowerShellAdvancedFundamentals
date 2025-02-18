@@ -18,6 +18,7 @@ The course for anyone with a fair bit of PowerShell scripting experience that wa
 
 ---
 
+
 ## Contact
 
 - [Advania.se](https://www.advania.se/digital-innovation/revolutionera-digitalt)
