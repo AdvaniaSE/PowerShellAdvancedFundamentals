@@ -4,6 +4,7 @@
 
 - Install [Visual Studio Code](http://aka.ms/vscode)
   - Install PowerShell Extension for VSCode
+  - Install the ConsoleGuiTools module: `Install-Module Microsoft.PowerShell.ConsoleGuiTools`
   - *Optional*
     - Set PowerShell as default language
     - Set PowerShell 7 as default version
