@@ -7,7 +7,7 @@
   - Cast the parameter `Color` as type `ColorEnum`
   - Verify that tab completion still behaves as expected.
 
-- Create a class, `User`, with the same properties as your database user
+- Create a class, `Participant`, with the same properties as your database user
   - Add a constructor to set the properties directly when instantiating the class
   - Add an override of the ToString() Method to output the user as csv, matching the contents of `MyLabFile.csv`
   - Replace the `$MyCsvUser = "$Name,$Age,{0},{1}" -f $Color, $UserId` line in the `Add-CourseUser` function with the newly created class and ToString() method
