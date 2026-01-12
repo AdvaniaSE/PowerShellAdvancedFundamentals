@@ -1,68 +1,45 @@
 # Lab 05. API
 
-## JSON
+This lab requires the PowerShell module `Pode`. If you do not have this module installed it can be installed in multiple ways:
 
-Use the free testing API at [JSONPlaceholder](https://jsonplaceholder.typicode.com/) with different HTTP request methods.
-
-The endpoint for the testing API is `https://jsonplaceholder.typicode.com`.
-
-### Get
-
-- Get all posts from the `/posts` endpoint
-
-Expected output:
-
-```text
-userId  id title                                                                           body
-------  -- -----                                                                           ----
-     1   1 sunt aut facere repellat provident occaecati excepturi optio reprehenderit      quia et suscipit…
-     1   2 qui est esse                                                                    est rerum tempore vitae…
-     1   3 ea molestias quasi exercitationem repellat qui ipsa sit aut                     et iusto sed quo iure…
-     1   4 eum et est occaecati                                                            ullam et saepe reiciendis voluptatem adipisci…
-     1   5 nesciunt quas odio                                                              repudiandae veniam quaerat sunt sed…
-...
-```
-
-- Get a specific resource from the `/posts` endpoint using any accepted id
-Expected output:
-
-```text
-userId  id title                                                                           body
-------  -- -----                                                                           ----
-     1   1 sunt aut facere repellat provident occaecati excepturi optio reprehenderit      quia et suscipit…
-```
-
-- Compare the results from using `Invoke-WebRequest` and `Invoke-RestMethod`
-  - What is the difference?
-
----
-
-### Post
-
-- Create a JSON object in PowerShell with a title, body and userId, and post it to `/posts` with `application/json` as the content type
-
-```text
-title userId body  id
------ ------ ----  --
-post       1 text 101
-```
-
----
-
-## XML
-
-- Get the XML document at `https://www.w3schools.com/xml/cd_catalog.xml` using PowerShell, either by saving the file or by getting the data directly from the web address as you would with an API
-- *Optional:* Write an advanced function called `Select-CDInfoAsJson` which accepts pipeline input, selects the Title and Artist properties and outputs it as JSON
+Through the PowerShell Gallery
 
 ```PowerShell
-$CDs = Invoke-RestMethod 'https://www.w3schools.com/xml/cd_catalog.xml'
-$CDs.CATALOG.CD[2] | Select-CDInfoAsJson"
+Find-Module Pode | Install-Module
 ```
-should result in:
 
-```PowerShell
-{
-    "TITLE":  "Greatest Hits",
-    "ARTIST":  "Dolly Parton"
-}
-```
+Or from the GitHub page [here.](https://github.com/Badgerati/Pode/releases/)
+
+## Starting the Pode API
+
+In the folder `pode` there are five files:
+- MyApi.ps1 - This file contains the code for the `GetUser` endpoint
+- MyApiSet.ps1 - This file contains the code for the `AddUser` endpoint
+- MyLabFile.csv - The use database. PLease not that this version of the user database will be altered during the lab.
+- StartAPIServer.ps1 - This file contains Pode configuration to start the API.
+- CallPodeAPI.ps1 - This file contains examples of how to call the API.
+
+1. Open up a new PowerShell terminal window.
+2. Navigate to the [pode folder](./pode/)
+3. Start Pode by running  `.\startAPIServer.ps1`
+
+> NOTE: Pode will reserve this window when run, so no code can be executed in this session during the demo. Use VSCode or another terminal to call the API.
+
+The Pode API Can be reached through the address `http://localhost:666/<Endpoint Name>`. Available endpoints are
+
+1. GetUser - `http://localhost:666/GetUser` - Gets a user using optional query strings for search - `http://localhost:666/GetUser?Color=Red`
+2. AddUser - `http://localhost:666/AddUser`- Creates a new user. Input from query string - `http://localhost:666/AddUser?Name=James Brown&Age=73&Color=Brown` - or post JSON body
+
+## Get user data
+
+- Open the file in your repo named `MyFunctions.ps1` in VSCode.
+
+- Change the function `GetUserData` to use the Pode endpoint `GetUser` to search for users. Verify that `Get-CourseUser` and `Confirm-CourseID` still works as expected when using API input.
+
+## Create new users
+
+- Change the function `Add-CourseUser` to use the Pode endpoint `AddUser` to create new users. Verify new users are created correctly by checking the `MyLabFile.csv` in the `pode` folder.
+
+# Expected outcome
+ 
+An example of the outcome from these labs may be found in the file `MyFunctions.ps1` in this folder, in the `GetUserData` and `Add-CourseUser` functions.

@@ -19,4 +19,10 @@ $MyCsvUser = "$Name,$Age,{0},{1}" -f $Color, $UserId
 $NewCSv = Get-Content $DatabaseFile -Raw
 $NewCSv += $MyCsvUser
 
-Set-Content -Value $NewCSv -Path $DatabaseFile
+try {
+    Set-Content -Value $NewCSv -Path $DatabaseFile
+    Write-Output "Successfully added $Name"
+}
+catch {
+    Write-Output "Failed to add $Name"
+}

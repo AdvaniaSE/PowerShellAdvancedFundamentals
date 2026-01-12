@@ -6,7 +6,6 @@ Start-PodeServer {
     Add-PodeEndpoint -Address localhost -Port 666 -Protocol Http
 
     Add-PodeRoute -Method Get -Path '/GetUser' -ScriptBlock {
-
         if (-not ([string]::IsNullOrEmpty($WebEvent.Query['Name']))) {
             [string]$Name = $WebEvent.Query['Name']
             $res = . $PSScriptRoot\MyApi.ps1 -Name $Name
@@ -28,30 +27,36 @@ Start-PodeServer {
         }
     }
 
-    
-    Add-PodeRoute -Method Get -Path '/AddUser' -ScriptBlock {
+    Add-PodeRoute -Method Get, Post -Path '/AddUser' -ScriptBlock {
+        if ($WebEvent.Method -eq 'get') {
+            $query = $WebEvent.Query
 
-        if ([string]::IsNullOrEmpty($WebEvent.Query['Name'])) {
-            Write-PodeJsonResponse -Value @{
-                result = 'Missing parameter Name'
-            } -StatusCode 400
+            $name = $query['Name']
+            $age = $query['Age']
+            $color = $query['Color']
         }
-        elseif ([string]::IsNullOrEmpty($WebEvent.Query['Age'])) {
-            Write-PodeJsonResponse -Value @{
-                result = 'Missing parameter Age'
-            } -StatusCode 400
+        elseif ($WebEvent.Method -eq 'post') {
+            $body = $WebEvent.Data
+
+            $name = $body['Name']
+            $age = $body['Age']
+            $color = $body['Color']
         }
-        elseif ([string]::IsNullOrEmpty($WebEvent.Query['Color'])) {
-            Write-PodeJsonResponse -Value @{
-                result = 'Missing parameter Color'
-            } -StatusCode 400
+
+        'name', 'age', 'color' | Foreach-Object {
+            if ([string]::IsNullOrEmpty($((Get-Variable $_).Value))) {
+                Write-PodeJsonResponse -Value @{
+                    result = "Missing parameter $_"
+                } -StatusCode 400
+                $failed = $true
+            }
         }
-        else {
-            & $PSScriptRoot\MyApiSet.ps1 -Name $($WebEvent.Query['Name']) -Age $($WebEvent.Query['Age']) -Color $($WebEvent.Query['Color'])
+        
+        if (-not $failed) {
+            $res = & $PSScriptRoot\MyApiSet.ps1 -Name $name -Age $age -Color $color
             Write-PodeJsonResponse -Value @{
                 result = $res
-            }
-            
+            }    
         }
     }
 }
